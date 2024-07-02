@@ -1,7 +1,8 @@
 ### The challenge
 
 Technical Requirements:
-- Tests Unit, and Golden. 
+
+- Tests Unit, and Golden.
 - Riverpod for state managment
 
 Users should be able to:
