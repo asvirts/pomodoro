@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-// We create a "provider", which will store a value (here "Hello world").
-// By using a provider, this allows us to mock/override the value exposed.
+import '../widgets/segmented_button.dart';
+import '../widgets/progress_indicator.dart';
 
 void main() {
   runApp(
@@ -14,36 +12,39 @@ void main() {
   );
 }
 
-// Extend ConsumerWidget instead of StatelessWidget, which is exposed by Riverpod
 class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.robotoSlabTextTheme(),
+        scaffoldBackgroundColor: Color.fromRGBO(30, 33, 63, 1),
       ),
       home: Scaffold(
         backgroundColor: Color.fromRGBO(30, 33, 63, 1),
-        appBar: AppBar(
-            title: const Text('pomodoro',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0,
-                )),
-            titleTextStyle: GoogleFonts.kumbhSans(),
-            centerTitle: true,
-            backgroundColor: Color.fromRGBO(30, 33, 63, 1),
-            foregroundColor: Color.fromRGBO(215, 224, 255, 1)),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'This is Google Fonts',
-              style: GoogleFonts.kumbhSans(),
-            ),
-          ],
+        body: Padding(
+          padding:
+              const EdgeInsets.only(left: 8, top: 16, right: 8, bottom: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('pomodoro',
+                  style: GoogleFonts.kumbhSans(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  )),
+              SegmentedButtonWidget(),
+              ProgressIndicatorWidget(),
+              const Icon(
+                Icons.settings,
+                color: Color.fromRGBO(215, 224, 255, 1),
+                size: 28.0,
+                semanticLabel: 'App settings',
+              ),
+            ],
+          ),
         ),
       ),
     );
