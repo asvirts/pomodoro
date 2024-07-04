@@ -1,7 +1,7 @@
-com.example.pomodoro.app-core-1.6.0-0 C:\Users\Andrew\.gradle\caches\transforms-3\284a410c767ad6c7a2b0ffc8d8d85981\transformed\core-1.6.0\res
-com.example.pomodoro.app-jetified-window-java-1.0.0-beta04-1 C:\Users\Andrew\.gradle\caches\transforms-3\2a215381204751055df81b6269e717b7\transformed\jetified-window-java-1.0.0-beta04\res
-com.example.pomodoro.app-jetified-annotation-experimental-1.1.0-2 C:\Users\Andrew\.gradle\caches\transforms-3\3d2f03fc996c2e0aa3dee5cfa3002cd1\transformed\jetified-annotation-experimental-1.1.0\res
-com.example.pomodoro.app-jetified-window-1.0.0-beta04-3 C:\Users\Andrew\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
+com.example.pomodoro.app-jetified-window-1.0.0-beta04-0 C:\Users\Andrew\.gradle\caches\transforms-3\201cb6eb82aca91e71a1de7894685e1d\transformed\jetified-window-1.0.0-beta04\res
+com.example.pomodoro.app-core-1.6.0-1 C:\Users\Andrew\.gradle\caches\transforms-3\6c25d1c26e17b75edd512c2f1d64c949\transformed\core-1.6.0\res
+com.example.pomodoro.app-jetified-window-java-1.0.0-beta04-2 C:\Users\Andrew\.gradle\caches\transforms-3\d977ef9bb87b78ab3fee59668c7eeb99\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.pomodoro.app-jetified-annotation-experimental-1.1.0-3 C:\Users\Andrew\.gradle\caches\transforms-3\f0ccb0b665f5f69a57c0b276ace6747f\transformed\jetified-annotation-experimental-1.1.0\res
 com.example.pomodoro.app-debug-4 C:\Users\Andrew\OneDrive\Documents\GitHub\pomodoro\pomodoro\android\app\src\debug\res
 com.example.pomodoro.app-main-5 C:\Users\Andrew\OneDrive\Documents\GitHub\pomodoro\pomodoro\android\app\src\main\res
 com.example.pomodoro.app-pngs-6 C:\Users\Andrew\OneDrive\Documents\GitHub\pomodoro\pomodoro\build\app\generated\res\pngs\debug

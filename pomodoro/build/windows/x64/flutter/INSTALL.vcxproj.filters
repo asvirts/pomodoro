@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Andrew\OneDrive\Documents\GitHub\pomodoro\pomodoro\build\windows\x64\CMakeFiles\92601d5f729241f4b72b2992e8884b32\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E4554C34-CDBF-3837-B4F8-A878F3C5670F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
