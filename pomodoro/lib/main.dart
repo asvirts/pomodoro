@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomodoro/widgets/settings.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/segmented_button.dart';
 import '../widgets/progress_indicator.dart';
@@ -54,12 +56,7 @@ class MyApp extends ConsumerWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.settings,
-                    color: Color.fromRGBO(215, 224, 255, 1),
-                    size: 28.0,
-                    semanticLabel: 'App settings',
-                  ),
+                  SettingsDialog(),
                 ],
               ),
             ],
