@@ -52,12 +52,23 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
         child: SizedBox(
           width: 248,
           height: 248,
-          child: CircularProgressIndicator(
-            color: Theme.of(context).colorScheme.primary,
-            strokeWidth: 12,
-            strokeCap: StrokeCap.round,
-            value: controller.value,
-            semanticsLabel: 'Time remaining in current pomodoro',
+          child: Stack(
+            children: <Widget>[
+              Center(
+                child: Container(
+                  width: 248,
+                  height: 248,
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.primary,
+                    strokeWidth: 12,
+                    strokeCap: StrokeCap.round,
+                    value: controller.value,
+                    semanticsLabel: 'Time remaining in current pomodoro',
+                  ),
+                ),
+              ),
+              Text(data)
+            ],
           ),
         ),
       ),
