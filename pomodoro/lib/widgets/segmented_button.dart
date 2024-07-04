@@ -27,7 +27,7 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
           backgroundColor: Color.fromRGBO(22, 25, 50, 1),
           foregroundColor: Color.fromRGBO(215, 224, 255, .4),
           selectedForegroundColor: Color.fromRGBO(30, 33, 63, 1),
-          selectedBackgroundColor: Color.fromRGBO(248, 112, 112, 1),
+          selectedBackgroundColor: Theme.of(context).colorScheme.primary,
           side: const BorderSide(width: 0, style: BorderStyle.none),
           textStyle: GoogleFonts.kumbhSans(
             fontWeight: FontWeight.bold,

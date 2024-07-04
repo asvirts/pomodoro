@@ -17,8 +17,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       theme: ThemeData(
-        textTheme: GoogleFonts.robotoSlabTextTheme(),
-        scaffoldBackgroundColor: const Color.fromRGBO(30, 33, 63, 1),
+        primaryColor: Color.fromRGBO(248, 112, 112, 1),
+        textTheme: GoogleFonts.kumbhSansTextTheme(),
       ),
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(30, 33, 63, 1),

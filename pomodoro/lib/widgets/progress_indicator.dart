@@ -33,7 +33,7 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32.2),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           gradient: const LinearGradient(
@@ -44,7 +44,7 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
                 Color.fromRGBO(46, 50, 90, 1),
               ])),
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: const Color.fromRGBO(22, 25, 50, 1),
           borderRadius: BorderRadius.circular(999),
@@ -53,7 +53,7 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
           width: 248,
           height: 248,
           child: CircularProgressIndicator(
-            color: const Color.fromRGBO(248, 112, 112, 1),
+            color: Theme.of(context).colorScheme.primary,
             strokeWidth: 12,
             strokeCap: StrokeCap.round,
             value: controller.value,
