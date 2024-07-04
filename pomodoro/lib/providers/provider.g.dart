@@ -6,20 +6,22 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$timerHash() => r'ded716a8be1b42d990b8643132b1396a5b193fc2';
+String _$timerNotifierHash() => r'6ff08bdb2ef1f38ae849c07f136b7eb219a597a9';
 
-/// See also [timer].
-@ProviderFor(timer)
-final timerProvider = AutoDisposeProvider<int>.internal(
-  timer,
-  name: r'timerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$timerHash,
+/// See also [TimerNotifier].
+@ProviderFor(TimerNotifier)
+final timerNotifierProvider =
+    AutoDisposeNotifierProvider<TimerNotifier, Set<int>>.internal(
+  TimerNotifier.new,
+  name: r'timerNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$timerNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef TimerRef = AutoDisposeProviderRef<int>;
+typedef _$TimerNotifier = AutoDisposeNotifier<Set<int>>;
 String _$modeNotifierHash() => r'817b7010069b9af9423fbbf60b5521a9001b6395';
 
 /// See also [ModeNotifier].

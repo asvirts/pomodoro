@@ -5,8 +5,21 @@ part 'provider.g.dart';
 
 // Progress indicator
 @riverpod
-int timer(ref) {
-  return 1;
+class TimerNotifier extends _$TimerNotifier {
+  @override
+  Set<int> build() {
+    return const {25};
+  }
+
+  int getValue() {
+    return state.first;
+  }
+
+  void updateTimerDuration(int newValue) {
+    if (state != newValue) {
+      state = {newValue};
+    }
+  }
 }
 
 // Segmented buttons

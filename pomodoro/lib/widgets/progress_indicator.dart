@@ -19,9 +19,11 @@ class _ProgressIndicatorWidgetState
 
   @override
   void initState() {
+    final currentDuration = ref.read(timerNotifierProvider);
+
     controller = AnimationController(
       vsync: this,
-      duration: Duration(minutes: ref.read(timerProvider)),
+      duration: Duration(minutes: currentDuration.first),
     )..addListener(() {
         setState(() {});
       });
