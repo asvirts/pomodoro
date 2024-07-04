@@ -18,29 +18,49 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.robotoSlabTextTheme(),
-        scaffoldBackgroundColor: Color.fromRGBO(30, 33, 63, 1),
+        scaffoldBackgroundColor: const Color.fromRGBO(30, 33, 63, 1),
       ),
       home: Scaffold(
-        backgroundColor: Color.fromRGBO(30, 33, 63, 1),
+        backgroundColor: const Color.fromRGBO(30, 33, 63, 1),
         body: Padding(
           padding:
-              const EdgeInsets.only(left: 8, top: 16, right: 8, bottom: 16),
+              const EdgeInsets.only(left: 8, top: 32, right: 8, bottom: 32),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('pomodoro',
-                  style: GoogleFonts.kumbhSans(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  )),
-              SegmentedButtonWidget(),
-              ProgressIndicatorWidget(),
-              const Icon(
-                Icons.settings,
-                color: Color.fromRGBO(215, 224, 255, 1),
-                size: 28.0,
-                semanticLabel: 'App settings',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('pomodoro',
+                      style: GoogleFonts.kumbhSans(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SegmentedButtonWidget(),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ProgressIndicatorWidget(),
+                ],
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.settings,
+                    color: Color.fromRGBO(215, 224, 255, 1),
+                    size: 28.0,
+                    semanticLabel: 'App settings',
+                  ),
+                ],
               ),
             ],
           ),
