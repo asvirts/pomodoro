@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/provider.dart';
+import 'package:pomodoro/providers/modes_provider.dart';
+import 'package:pomodoro/providers/progress_provider.dart';
 
 class SegmentedButtonWidget extends ConsumerStatefulWidget {
   const SegmentedButtonWidget({super.key});
@@ -47,6 +48,7 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
           ref
               .read(modeNotifierProvider.notifier)
               .updateMode(newSelection.first);
+          ref.read(timerNotifierProvider);
         },
       ),
     );

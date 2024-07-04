@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/settings_provider.dart';
 
-class SettingsDialog extends StatelessWidget {
+class SettingsDialog extends ConsumerWidget {
   const SettingsDialog({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentPomodoroTime = ref.watch(pomodoroTimerNotifierProvider);
+    final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
+    final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -36,6 +43,37 @@ class SettingsDialog extends StatelessWidget {
                             ),
                           ),
                         ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text(
+                        "TIME (MINUTES)",
+                        style: GoogleFonts.kumbhSans(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 4.23,
+                        ),
+                      ),
+                    ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("pomodoro"),
+                        Text(currentPomodoroTime.first.toString())
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("short break"),
+                        Text(currentShortBreakTime.first.toString())
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("long break"),
+                        Text(currentLongBreakTime.first.toString())
+                      ],
+                    ),
                   ],
                 ),
               ),

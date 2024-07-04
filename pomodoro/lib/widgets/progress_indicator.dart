@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/provider.dart';
+import 'package:pomodoro/providers/modes_provider.dart';
+import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
@@ -23,10 +24,8 @@ class _ProgressIndicatorWidgetState
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(minutes: currentDuration.first),
-    )..addListener(() {
-        setState(() {});
-      });
+      duration: Duration(seconds: currentDuration.first),
+    );
     controller.repeat();
     controller.reverse(from: 100);
     super.initState();
