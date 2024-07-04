@@ -21,6 +21,7 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
         foregroundColor: Color.fromRGBO(215, 224, 255, 1),
         selectedForegroundColor: Color.fromRGBO(30, 33, 63, 1),
         selectedBackgroundColor: Color.fromRGBO(248, 112, 112, 1),
+        side: const BorderSide(width: 0, style: BorderStyle.none),
       ),
       segments: const <ButtonSegment<Modes>>[
         ButtonSegment<Modes>(value: Modes.pomodoro, label: Text('pomodoro')),

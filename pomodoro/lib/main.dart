@@ -27,7 +27,6 @@ class MyApp extends ConsumerWidget {
               const EdgeInsets.only(left: 8, top: 16, right: 8, bottom: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('pomodoro',
                   style: GoogleFonts.kumbhSans(
