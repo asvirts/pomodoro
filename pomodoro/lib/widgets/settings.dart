@@ -13,24 +13,29 @@ class SettingsDialog extends StatelessWidget {
             context: context,
             builder: (BuildContext context) => Dialog(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Icon(
-                      Icons.settings,
-                      color: Color.fromRGBO(215, 224, 255, 1),
-                      size: 28.0,
-                      semanticLabel: 'App settings',
-                    ),
-                    const SizedBox(height: 15),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Close'),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Settings",
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              color: Color.fromRGBO(30, 33, 63, .5),
+                              size: 14.0,
+                              semanticLabel: 'Close app settings',
+                            ),
+                          ),
+                        ]),
                   ],
                 ),
               ),
