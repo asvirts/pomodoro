@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class ProgressIndicatorWidget extends StatefulWidget {
+class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
 
   @override
-  State<ProgressIndicatorWidget> createState() =>
+  ConsumerState<ProgressIndicatorWidget> createState() =>
       _ProgressIndicatorWidgetState();
 }
 
-class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
+class _ProgressIndicatorWidgetState
+    extends ConsumerState<ProgressIndicatorWidget>
     with TickerProviderStateMixin {
   late AnimationController controller;
 
@@ -16,11 +21,12 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 15),
+      duration: Duration(minutes: ref.read(timerProvider)),
     )..addListener(() {
         setState(() {});
       });
-    controller.repeat(reverse: true);
+    controller.repeat();
+    controller.reverse(from: 100);
     super.initState();
   }
 
@@ -55,7 +61,7 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
           child: Stack(
             children: <Widget>[
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 248,
                   height: 248,
                   child: CircularProgressIndicator(
@@ -67,7 +73,20 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
                   ),
                 ),
               ),
-              Text(data)
+              Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "17:59",
+                        style: GoogleFonts.kumbhSans(
+                            fontSize: 80,
+                            color: Theme.of(context).canvasColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text("PAUSE")
+                    ]),
+              )
             ],
           ),
         ),

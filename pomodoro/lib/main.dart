@@ -20,6 +20,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color.fromRGBO(248, 112, 112, 1),
+        canvasColor: Color.fromRGBO(215, 224, 255, 1),
         textTheme: GoogleFonts.kumbhSansTextTheme(),
       ),
       home: Scaffold(

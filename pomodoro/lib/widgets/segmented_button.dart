@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/provider.dart';
 
-class SegmentedButtonWidget extends StatefulWidget {
+class SegmentedButtonWidget extends ConsumerStatefulWidget {
   const SegmentedButtonWidget({super.key});
 
   @override
-  State<SegmentedButtonWidget> createState() => _SegmentedButtonWidgetState();
+  ConsumerState<SegmentedButtonWidget> createState() =>
+      _SegmentedButtonWidgetState();
 }
 
-enum Modes { pomodoro, shortBreak, longBreak }
-
-class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
-  Modes modesView = Modes.pomodoro;
-
+class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
   @override
   Widget build(BuildContext context) {
+    final currentMode = ref.watch(modeNotifierProvider);
+
     return Container(
       decoration: BoxDecoration(
           color: Color.fromRGBO(22, 25, 50, 1),
@@ -41,11 +42,11 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
           ButtonSegment<Modes>(
               value: Modes.longBreak, label: Text('long break')),
         ],
-        selected: <Modes>{modesView},
+        selected: currentMode,
         onSelectionChanged: (Set<Modes> newSelection) {
-          setState(() {
-            modesView = newSelection.first;
-          });
+          ref
+              .read(modeNotifierProvider.notifier)
+              .updateMode(newSelection.first);
         },
       ),
     );
