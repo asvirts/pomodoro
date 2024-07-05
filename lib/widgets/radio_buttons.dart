@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:group_button/group_button.dart';
 import 'package:pomodoro/providers/settings_provider.dart' as settings;
 
 class FontSelector extends ConsumerStatefulWidget {
@@ -14,51 +16,30 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
   Widget build(BuildContext context) {
     final currentFont = ref.watch(settings.fontNotifierProvider);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: RadioListTile(
-            value: settings.Fonts.sans,
-            groupValue: currentFont.first,
-            autofocus: true,
-            onChanged: (value) {
-              ref
-                  .watch(settings.fontNotifierProvider.notifier)
-                  .updateFonts(settings.Fonts.sans);
-            },
-          ),
-        ),
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: RadioListTile(
-            value: settings.Fonts.serif,
-            groupValue: currentFont.first,
-            onChanged: (value) {
-              ref
-                  .watch(settings.fontNotifierProvider.notifier)
-                  .updateFonts(settings.Fonts.serif);
-            },
-          ),
-        ),
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: RadioListTile(
-            value: settings.Fonts.mono,
-            groupValue: currentFont.first,
-            onChanged: (value) {
-              ref
-                  .watch(settings.fontNotifierProvider.notifier)
-                  .updateFonts(settings.Fonts.mono);
-            },
-          ),
-        ),
-      ],
-    );
+    TextStyle font =
+        ref.watch(settings.fontNotifierProvider.notifier).getCurrentFont();
+
+    return const Row(children: [
+      GroupButton(
+        options: GroupButtonOptions(
+            buttonHeight: 40,
+            buttonWidth: 40,
+            spacing: 16,
+            selectedColor: Color.fromRGBO(22, 25, 50, 1),
+            selectedTextStyle: TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 1),
+                fontSize: 15,
+                fontWeight: FontWeight.bold),
+            unselectedColor: Color.fromRGBO(239, 241, 250, 1),
+            unselectedTextStyle: TextStyle(
+                color: Color.fromRGBO(30, 33, 63, .72),
+                fontSize: 15,
+                fontWeight: FontWeight.bold),
+            borderRadius: BorderRadius.all(Radius.circular(999))),
+        isRadio: true,
+        buttons: ["Aa", "Aa", "Aa"],
+      )
+    ]);
   }
 }
 
