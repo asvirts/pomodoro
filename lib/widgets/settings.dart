@@ -12,6 +12,11 @@ class SettingsDialog extends ConsumerWidget {
     final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
     final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
 
+    final currentFont = ref.watch(fontNotifierProvider);
+    final currentColorScheme = ref.watch(colorsNotifierProvider);
+
+    String font = currentFont.first.name;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -72,6 +77,92 @@ class SettingsDialog extends ConsumerWidget {
                       children: [
                         const Text("long break"),
                         Text(currentLongBreakTime.first.toString())
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Text(font),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: Fonts.sans,
+                                    groupValue: currentFont.first,
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(fontNotifierProvider.notifier)
+                                          .updateFonts(Fonts.sans);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: Fonts.serif,
+                                    groupValue: currentFont.first,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(fontNotifierProvider.notifier)
+                                          .updateFonts(Fonts.serif);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: Fonts.mono,
+                                    groupValue: currentFont.first,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(fontNotifierProvider.notifier)
+                                          .updateFonts(Fonts.mono);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Text("COLOR"),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Radio(
+                                  value: Fonts.sans,
+                                  groupValue: Fonts,
+                                  onChanged: (value) => Fonts,
+                                  activeColor: Color.fromRGBO(22, 25, 50, 1),
+                                ),
+                                Radio(
+                                  value: Fonts.sans,
+                                  groupValue: Fonts,
+                                  onChanged: (value) => Fonts,
+                                ),
+                                Radio(
+                                  value: Fonts.sans,
+                                  groupValue: Fonts,
+                                  onChanged: (value) => Fonts,
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ],

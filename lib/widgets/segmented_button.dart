@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
-import 'package:pomodoro/providers/progress_provider.dart';
+import 'package:pomodoro/providers/settings_provider.dart';
 
 class SegmentedButtonWidget extends ConsumerStatefulWidget {
   const SegmentedButtonWidget({super.key});
@@ -16,6 +16,9 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
   @override
   Widget build(BuildContext context) {
     final currentMode = ref.watch(modeNotifierProvider);
+    final currentFont = ref.watch(fontNotifierProvider);
+
+    TextStyle font = ref.watch(fontNotifierProvider.notifier).getCurrentFont();
 
     return Container(
       decoration: BoxDecoration(
@@ -36,19 +39,19 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
             fontSize: 12,
           ),
         ),
-        segments: const <ButtonSegment<Modes>>[
-          ButtonSegment<Modes>(value: Modes.pomodoro, label: Text('pomodoro')),
+        segments: <ButtonSegment<Modes>>[
           ButtonSegment<Modes>(
-              value: Modes.shortBreak, label: Text('short break')),
+              value: Modes.pomodoro, label: Text('pomodoro', style: font)),
           ButtonSegment<Modes>(
-              value: Modes.longBreak, label: Text('long break')),
+              value: Modes.shortBreak, label: Text('short break', style: font)),
+          ButtonSegment<Modes>(
+              value: Modes.longBreak, label: Text('long break', style: font)),
         ],
         selected: currentMode,
         onSelectionChanged: (Set<Modes> newSelection) {
           ref
               .read(modeNotifierProvider.notifier)
               .updateMode(newSelection.first);
-          ref.read(timerNotifierProvider);
         },
       ),
     );
