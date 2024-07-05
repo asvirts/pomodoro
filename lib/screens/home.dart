@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/progress_indicator.dart';
 import 'package:pomodoro/widgets/segmented_button.dart';
 import 'package:pomodoro/widgets/settings.dart';
@@ -10,6 +11,12 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentFont = ref.watch(fontNotifierProvider);
+    final currentColor = ref.watch(colorsNotifierProvider);
+
+    TextStyle textStyle =
+        ref.watch(fontNotifierProvider.notifier).getCurrentFont();
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(30, 33, 63, 1),
       body: Padding(
@@ -21,10 +28,11 @@ class Home extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('pomodoro',
-                    style: GoogleFonts.kumbhSans(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
+                      fontStyle: textStyle.fontStyle,
                     )),
               ],
             ),

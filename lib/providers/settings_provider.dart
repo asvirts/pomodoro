@@ -67,14 +67,10 @@ class ColorsNotifier extends _$ColorsNotifier {
     return const {ColorScheme.red};
   }
 
-  Color updateMode(ColorScheme newScheme) {
-    if (state != newScheme) {
-      state = {newScheme};
-    }
-
+  Color getCurrentColor() {
     Color? newColor;
 
-    switch (newScheme) {
+    switch (state.first) {
       case ColorScheme.red:
         newColor = const Color.fromRGBO(248, 112, 112, 1);
         break;
@@ -87,6 +83,12 @@ class ColorsNotifier extends _$ColorsNotifier {
     }
 
     return newColor;
+  }
+
+  void updateColor(ColorScheme newScheme) {
+    if (state != newScheme) {
+      state = {newScheme};
+    }
   }
 }
 

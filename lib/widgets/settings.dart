@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/settings_provider.dart';
+import 'package:pomodoro/providers/settings_provider.dart' as settings;
 
 class SettingsDialog extends ConsumerWidget {
   const SettingsDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentPomodoroTime = ref.watch(pomodoroTimerNotifierProvider);
-    final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
-    final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
+    final currentPomodoroTime =
+        ref.watch(settings.pomodoroTimerNotifierProvider);
+    final currentShortBreakTime =
+        ref.watch(settings.shortBreakTimerNotifierProvider);
+    final currentLongBreakTime =
+        ref.watch(settings.longBreakTimerNotifierProvider);
 
-    final currentFont = ref.watch(fontNotifierProvider);
-    final currentColorScheme = ref.watch(colorsNotifierProvider);
-
-    String font = currentFont.first.name;
+    final currentFont = ref.watch(settings.fontNotifierProvider);
+    final currentColor = ref.watch(settings.colorsNotifierProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +85,7 @@ class SettingsDialog extends ConsumerWidget {
                       children: [
                         Column(
                           children: [
-                            Text(font),
+                            const Text("FONT"),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -92,13 +93,14 @@ class SettingsDialog extends ConsumerWidget {
                                   height: 40,
                                   width: 40,
                                   child: RadioListTile(
-                                    value: Fonts.sans,
+                                    value: settings.Fonts.sans,
                                     groupValue: currentFont.first,
                                     autofocus: true,
                                     onChanged: (value) {
                                       ref
-                                          .watch(fontNotifierProvider.notifier)
-                                          .updateFonts(Fonts.sans);
+                                          .watch(settings
+                                              .fontNotifierProvider.notifier)
+                                          .updateFonts(settings.Fonts.sans);
                                     },
                                   ),
                                 ),
@@ -106,12 +108,13 @@ class SettingsDialog extends ConsumerWidget {
                                   height: 40,
                                   width: 40,
                                   child: RadioListTile(
-                                    value: Fonts.serif,
+                                    value: settings.Fonts.serif,
                                     groupValue: currentFont.first,
                                     onChanged: (value) {
                                       ref
-                                          .watch(fontNotifierProvider.notifier)
-                                          .updateFonts(Fonts.serif);
+                                          .watch(settings
+                                              .fontNotifierProvider.notifier)
+                                          .updateFonts(settings.Fonts.serif);
                                     },
                                   ),
                                 ),
@@ -119,12 +122,13 @@ class SettingsDialog extends ConsumerWidget {
                                   height: 40,
                                   width: 40,
                                   child: RadioListTile(
-                                    value: Fonts.mono,
+                                    value: settings.Fonts.mono,
                                     groupValue: currentFont.first,
                                     onChanged: (value) {
                                       ref
-                                          .watch(fontNotifierProvider.notifier)
-                                          .updateFonts(Fonts.mono);
+                                          .watch(settings
+                                              .fontNotifierProvider.notifier)
+                                          .updateFonts(settings.Fonts.mono);
                                     },
                                   ),
                                 ),
@@ -139,25 +143,54 @@ class SettingsDialog extends ConsumerWidget {
                       children: [
                         Column(
                           children: [
-                            Text("COLOR"),
+                            const Text("COLOR"),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Radio(
-                                  value: Fonts.sans,
-                                  groupValue: Fonts,
-                                  onChanged: (value) => Fonts,
-                                  activeColor: Color.fromRGBO(22, 25, 50, 1),
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: settings.ColorScheme.red,
+                                    groupValue: currentColor.first,
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(settings
+                                              .colorsNotifierProvider.notifier)
+                                          .updateColor(
+                                              settings.ColorScheme.red);
+                                    },
+                                  ),
                                 ),
-                                Radio(
-                                  value: Fonts.sans,
-                                  groupValue: Fonts,
-                                  onChanged: (value) => Fonts,
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: settings.ColorScheme.blue,
+                                    groupValue: currentColor.first,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(settings
+                                              .colorsNotifierProvider.notifier)
+                                          .updateColor(
+                                              settings.ColorScheme.blue);
+                                    },
+                                  ),
                                 ),
-                                Radio(
-                                  value: Fonts.sans,
-                                  groupValue: Fonts,
-                                  onChanged: (value) => Fonts,
+                                SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: RadioListTile(
+                                    value: settings.ColorScheme.purple,
+                                    groupValue: currentColor.first,
+                                    onChanged: (value) {
+                                      ref
+                                          .watch(settings
+                                              .colorsNotifierProvider.notifier)
+                                          .updateColor(
+                                              settings.ColorScheme.purple);
+                                    },
+                                  ),
                                 ),
                               ],
                             ),

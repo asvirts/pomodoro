@@ -21,7 +21,7 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
-String _$colorsNotifierHash() => r'25b4bee94fc9de744b7bafce33b313b7ac255a1c';
+String _$colorsNotifierHash() => r'8b2f0fa3efe194a5e33cdbdf3b71096c556250e0';
 
 /// See also [ColorsNotifier].
 @ProviderFor(ColorsNotifier)

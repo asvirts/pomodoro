@@ -20,7 +20,7 @@ final currentModeProvider = AutoDisposeProvider<Modes>.internal(
 );
 
 typedef CurrentModeRef = AutoDisposeProviderRef<Modes>;
-String _$timerNotifierHash() => r'6ff08bdb2ef1f38ae849c07f136b7eb219a597a9';
+String _$timerNotifierHash() => r'803585a5b28229a34616bdc4bbccc47d07b40516';
 
 /// See also [TimerNotifier].
 @ProviderFor(TimerNotifier)

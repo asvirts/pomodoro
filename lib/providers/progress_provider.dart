@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,8 +18,8 @@ class TimerNotifier extends _$TimerNotifier {
     return const {25};
   }
 
-  int getValue() {
-    return state.first;
+  Timer getTimer() {
+    return Timer(Duration(minutes: state.first), () {});
   }
 
   void updateTimerDuration(int newValue) {
