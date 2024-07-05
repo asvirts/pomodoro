@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
@@ -85,7 +83,7 @@ class _ProgressIndicatorWidgetState
                             color: Theme.of(context).canvasColor,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text("PAUSE")
+                      const Text("PAUSE")
                     ]),
               )
             ],

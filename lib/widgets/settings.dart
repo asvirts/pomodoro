@@ -56,21 +56,21 @@ class SettingsDialog extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("pomodoro"),
+                        const Text("pomodoro"),
                         Text(currentPomodoroTime.first.toString())
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("short break"),
+                        const Text("short break"),
                         Text(currentShortBreakTime.first.toString())
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("long break"),
+                        const Text("long break"),
                         Text(currentLongBreakTime.first.toString())
                       ],
                     ),

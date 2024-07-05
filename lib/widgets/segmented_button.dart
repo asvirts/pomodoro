@@ -19,16 +19,16 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
 
     return Container(
       decoration: BoxDecoration(
-          color: Color.fromRGBO(22, 25, 50, 1),
+          color: const Color.fromRGBO(22, 25, 50, 1),
           borderRadius: BorderRadius.circular(999)),
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: SegmentedButton<Modes>(
         showSelectedIcon: false,
         style: SegmentedButton.styleFrom(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-          backgroundColor: Color.fromRGBO(22, 25, 50, 1),
-          foregroundColor: Color.fromRGBO(215, 224, 255, .4),
-          selectedForegroundColor: Color.fromRGBO(30, 33, 63, 1),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          backgroundColor: const Color.fromRGBO(22, 25, 50, 1),
+          foregroundColor: const Color.fromRGBO(215, 224, 255, .4),
+          selectedForegroundColor: const Color.fromRGBO(30, 33, 63, 1),
           selectedBackgroundColor: Theme.of(context).colorScheme.primary,
           side: const BorderSide(width: 0, style: BorderStyle.none),
           textStyle: GoogleFonts.kumbhSans(
