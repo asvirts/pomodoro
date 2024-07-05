@@ -12,6 +12,19 @@ Modes currentMode(ref) {
 }
 
 @riverpod
+class TimerStartedNotifier extends _$TimerStartedNotifier {
+  @override
+  Set<bool> build() {
+    return const {false};
+  }
+
+  void swapTimer() {
+    bool temp = !state.first;
+    state = {temp};
+  }
+}
+
+@riverpod
 class TimerNotifier extends _$TimerNotifier {
   @override
   Set<int> build() {

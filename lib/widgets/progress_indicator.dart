@@ -28,7 +28,6 @@ class _ProgressIndicatorWidgetState
       vsync: this,
       duration: Duration(seconds: currentDuration.first),
     );
-    controller.repeat();
     controller.reverse(from: 100);
     super.initState();
   }
@@ -78,11 +77,7 @@ class _ProgressIndicatorWidgetState
                   ),
                 ),
               ),
-              Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [PomodoroCountdown(), const Text("PAUSE")]),
-              )
+              const Center(child: PomodoroCountdown()),
             ],
           ),
         ),
