@@ -6,6 +6,37 @@ part of 'settings_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$fontNotifierHash() => r'0bdeb239541d84c7abca1fa7eff866c929d81123';
+
+/// See also [FontNotifier].
+@ProviderFor(FontNotifier)
+final fontNotifierProvider =
+    AutoDisposeNotifierProvider<FontNotifier, Set<int>>.internal(
+  FontNotifier.new,
+  name: r'fontNotifierProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$fontNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$FontNotifier = AutoDisposeNotifier<Set<int>>;
+String _$colorsNotifierHash() => r'0af428846a2821ffcdb2215d6975556f085800d8';
+
+/// See also [ColorsNotifier].
+@ProviderFor(ColorsNotifier)
+final colorsNotifierProvider =
+    AutoDisposeNotifierProvider<ColorsNotifier, Set<int>>.internal(
+  ColorsNotifier.new,
+  name: r'colorsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$colorsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ColorsNotifier = AutoDisposeNotifier<Set<int>>;
 String _$pomodoroTimerNotifierHash() =>
     r'9a9c59bf03fc6fc3e111bbc27771842ce0bbc6a0';
 
