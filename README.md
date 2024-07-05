@@ -1,3 +1,5 @@
+[![Dart](https://github.com/asvirts/pomodoro/actions/workflows/dart.yml/badge.svg)](https://github.com/asvirts/pomodoro/actions/workflows/dart.yml)
+
 ### The challenge
 
 Technical Requirements:
