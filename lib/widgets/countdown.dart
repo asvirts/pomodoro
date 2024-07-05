@@ -40,12 +40,19 @@ class _PomodoroCountdownState extends ConsumerState<PomodoroCountdown> {
         ),
         ElevatedButton(
             style: const ButtonStyle(
-                backgroundColor: WidgetStateColor.transparent),
+                backgroundColor: WidgetStateColor.transparent,
+                foregroundColor: WidgetStateColor.transparent,
+                shadowColor: WidgetStateColor.transparent),
             onPressed: () =>
                 ref.watch(timerStartedNotifierProvider.notifier).swapTimer(),
             child: Text(
               _timerText,
-              style: const TextStyle(color: Color.fromRGBO(215, 224, 255, 1)),
+              style: const TextStyle(
+                color: Color.fromRGBO(215, 224, 255, 1),
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 13.13,
+              ),
             )),
       ],
     );

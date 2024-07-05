@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
+import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 
 class SegmentedButtonWidget extends ConsumerStatefulWidget {
@@ -48,11 +49,9 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
               value: Modes.longBreak, label: Text('long break', style: font)),
         ],
         selected: currentMode,
-        onSelectionChanged: (Set<Modes> newSelection) {
-          ref
-              .read(modeNotifierProvider.notifier)
-              .updateMode(newSelection.first);
-        },
+        onSelectionChanged: (Set<Modes> newSelection) => [
+          ref.read(modeNotifierProvider.notifier).updateMode(newSelection.first)
+        ],
       ),
     );
   }

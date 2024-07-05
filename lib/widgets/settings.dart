@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/settings_provider.dart' as settings;
+import 'package:pomodoro/widgets/radio_buttons.dart';
 
 class SettingsDialog extends ConsumerWidget {
   const SettingsDialog({super.key});
@@ -14,9 +15,6 @@ class SettingsDialog extends ConsumerWidget {
         ref.watch(settings.shortBreakTimerNotifierProvider);
     final currentLongBreakTime =
         ref.watch(settings.longBreakTimerNotifierProvider);
-
-    final currentFont = ref.watch(settings.fontNotifierProvider);
-    final currentColor = ref.watch(settings.colorsNotifierProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,120 +78,24 @@ class SettingsDialog extends ConsumerWidget {
                         Text(currentLongBreakTime.first.toString())
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: [
-                            const Text("FONT"),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.Fonts.sans,
-                                    groupValue: currentFont.first,
-                                    autofocus: true,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .fontNotifierProvider.notifier)
-                                          .updateFonts(settings.Fonts.sans);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.Fonts.serif,
-                                    groupValue: currentFont.first,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .fontNotifierProvider.notifier)
-                                          .updateFonts(settings.Fonts.serif);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.Fonts.mono,
-                                    groupValue: currentFont.first,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .fontNotifierProvider.notifier)
-                                          .updateFonts(settings.Fonts.mono);
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
+                            Text("FONT"),
+                            FontSelector(),
                           ],
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: [
-                            const Text("COLOR"),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.ColorScheme.red,
-                                    groupValue: currentColor.first,
-                                    autofocus: true,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .colorsNotifierProvider.notifier)
-                                          .updateColor(
-                                              settings.ColorScheme.red);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.ColorScheme.blue,
-                                    groupValue: currentColor.first,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .colorsNotifierProvider.notifier)
-                                          .updateColor(
-                                              settings.ColorScheme.blue);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: RadioListTile(
-                                    value: settings.ColorScheme.purple,
-                                    groupValue: currentColor.first,
-                                    onChanged: (value) {
-                                      ref
-                                          .watch(settings
-                                              .colorsNotifierProvider.notifier)
-                                          .updateColor(
-                                              settings.ColorScheme.purple);
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
+                            Text("COLOR"),
+                            ColorSelector(),
                           ],
                         )
                       ],

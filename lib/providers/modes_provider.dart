@@ -1,3 +1,4 @@
+import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'modes_provider.g.dart';
