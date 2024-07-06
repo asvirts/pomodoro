@@ -16,6 +16,15 @@ class SettingsDialog extends ConsumerWidget {
     final currentLongBreakTime =
         ref.watch(settings.longBreakTimerNotifierProvider);
 
+    DropdownMenu pomodoroDropdown =
+        DropdownMenu(menuStyle: MenuStyle(), dropdownMenuEntries: [
+      DropdownMenuEntry(value: 1, label: "1"),
+      DropdownMenuEntry(value: 1, label: "2"),
+      DropdownMenuEntry(value: 1, label: "3"),
+      DropdownMenuEntry(value: 1, label: "4"),
+      DropdownMenuEntry(value: 1, label: "5"),
+    ]);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -30,7 +39,6 @@ class SettingsDialog extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(bottom: 8),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -50,8 +58,11 @@ class SettingsDialog extends ConsumerWidget {
                               ),
                             ]),
                       ),
+                      Divider(
+                        thickness: 1,
+                      ),
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        margin: EdgeInsets.all(16),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -69,25 +80,25 @@ class SettingsDialog extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("pomodoro"),
-                          Text(currentPomodoroTime.first.toString())
+                          pomodoroDropdown,
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("short break"),
-                          Text(currentShortBreakTime.first.toString())
+                          pomodoroDropdown,
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("long break"),
-                          Text(currentLongBreakTime.first.toString())
+                          pomodoroDropdown,
                         ],
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: EdgeInsets.all(16),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -100,8 +111,11 @@ class SettingsDialog extends ConsumerWidget {
                           ],
                         ),
                       ),
+                      Divider(
+                        thickness: 1,
+                      ),
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: EdgeInsets.all(16),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -114,8 +128,10 @@ class SettingsDialog extends ConsumerWidget {
                           ],
                         ),
                       ),
+                      Divider(
+                        thickness: 1,
+                      ),
                       Container(
-                        padding: EdgeInsets.only(top: 8),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
