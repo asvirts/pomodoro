@@ -26,82 +26,112 @@ class SettingsDialog extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Settings",
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(30, 33, 63, .5),
+                                  size: 14.0,
+                                  semanticLabel: 'Close app settings',
+                                ),
+                              ),
+                            ]),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "TIME (MINUTES)",
+                                style: GoogleFonts.kumbhSans(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 4.23,
+                                ),
+                              ),
+                            ]),
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Settings",
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(
-                              Icons.close,
-                              color: Color.fromRGBO(30, 33, 63, .5),
-                              size: 14.0,
-                              semanticLabel: 'Close app settings',
+                          const Text("pomodoro"),
+                          Text(currentPomodoroTime.first.toString())
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("short break"),
+                          Text(currentShortBreakTime.first.toString())
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("long break"),
+                          Text(currentLongBreakTime.first.toString())
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Text("FONT"),
+                                FontSelector(),
+                              ],
                             ),
-                          ),
-                        ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(
-                        "TIME (MINUTES)",
-                        style: GoogleFonts.kumbhSans(
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 4.23,
+                          ],
                         ),
                       ),
-                    ]),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("pomodoro"),
-                        Text(currentPomodoroTime.first.toString())
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("short break"),
-                        Text(currentShortBreakTime.first.toString())
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("long break"),
-                        Text(currentLongBreakTime.first.toString())
-                      ],
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("FONT"),
-                            FontSelector(),
+                            Column(
+                              children: [
+                                Text("COLOR"),
+                                ColorSelector(),
+                              ],
+                            )
                           ],
                         ),
-                      ],
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Text("COLOR"),
-                            ColorSelector(),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 8),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FilledButton(
+                                onPressed: () => Navigator.pop(context),
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(ref
+                                      .watch(settings
+                                          .colorsNotifierProvider.notifier)
+                                      .getCurrentColor()),
+                                ),
+                                child: Text("APPLY"),
+                              )
+                            ]),
+                      )
+                    ]),
               ),
             ),
           ),

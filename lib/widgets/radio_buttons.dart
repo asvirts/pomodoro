@@ -65,6 +65,10 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: FilledButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                  const Color.fromRGBO(248, 112, 112, 1)),
+            ),
             autofocus: true,
             onPressed: () => ref
                 .watch(settings.colorsNotifierProvider.notifier)
@@ -72,9 +76,14 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
             child: Icon(Icons.check)),
       ),
       Container(
+        margin: EdgeInsets.symmetric(horizontal: 16),
         height: 40,
         width: 40,
         child: FilledButton(
+          style: ButtonStyle(
+            backgroundColor:
+                WidgetStateProperty.all(const Color.fromRGBO(112, 243, 248, 1)),
+          ),
           autofocus: true,
           onPressed: () => ref
               .watch(settings.colorsNotifierProvider.notifier)
@@ -88,6 +97,10 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: FilledButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                  const Color.fromRGBO(216, 129, 248, 1)),
+            ),
             autofocus: true,
             onPressed: () => ref
                 .watch(settings.colorsNotifierProvider.notifier)

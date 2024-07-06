@@ -6,7 +6,63 @@ part of 'modes_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$modeNotifierHash() => r'817b7010069b9af9423fbbf60b5521a9001b6395';
+String _$timerHash() => r'419da0e8adc06cb229e46db5355720a8228b4118';
+
+/// See also [timer].
+@ProviderFor(timer)
+final timerProvider = AutoDisposeProvider<int>.internal(
+  timer,
+  name: r'timerProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$timerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef TimerRef = AutoDisposeProviderRef<int>;
+String _$pomodoroHash() => r'0f4059ddffab0221c32c5572380a4fd66dab4572';
+
+/// See also [pomodoro].
+@ProviderFor(pomodoro)
+final pomodoroProvider = AutoDisposeProvider<int>.internal(
+  pomodoro,
+  name: r'pomodoroProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$pomodoroHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PomodoroRef = AutoDisposeProviderRef<int>;
+String _$shortHash() => r'fa4ca181fed37cdd41a39d4b289263568843078f';
+
+/// See also [short].
+@ProviderFor(short)
+final shortProvider = AutoDisposeProvider<int>.internal(
+  short,
+  name: r'shortProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$shortHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ShortRef = AutoDisposeProviderRef<int>;
+String _$longHash() => r'68c78e19ace6891d2e42ebbee808ab33c42c0d66';
+
+/// See also [long].
+@ProviderFor(long)
+final longProvider = AutoDisposeProvider<int>.internal(
+  long,
+  name: r'longProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$longHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef LongRef = AutoDisposeProviderRef<int>;
+String _$modeNotifierHash() => r'3cc2a85ed4f7ba6e6642fb517631d7a5d19cd7ea';
 
 /// See also [ModeNotifier].
 @ProviderFor(ModeNotifier)

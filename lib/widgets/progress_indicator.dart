@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
+import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/countdown.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -40,7 +41,7 @@ class _ProgressIndicatorWidgetState
 
   @override
   Widget build(BuildContext context) {
-    final timeRemaining = ref.watch(timerNotifierProvider);
+    final currentColor = ref.watch(colorsNotifierProvider);
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -69,7 +70,9 @@ class _ProgressIndicatorWidgetState
                   width: 248,
                   height: 248,
                   child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: ref
+                        .watch(colorsNotifierProvider.notifier)
+                        .getCurrentColor(),
                     strokeWidth: 12,
                     strokeCap: StrokeCap.round,
                     value: controller.value,
@@ -77,7 +80,7 @@ class _ProgressIndicatorWidgetState
                   ),
                 ),
               ),
-              const Center(child: PomodoroCountdown()),
+              Center(child: PomodoroCountdown()),
             ],
           ),
         ),
