@@ -1,5 +1,6 @@
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:group_button/group_button.dart';
@@ -57,54 +58,42 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
     final currentColor = ref.watch(settings.colorsNotifierProvider);
     final currentIndex = ref.watch(settings.colorIndexProvider);
 
-    final _buttons = ["", "", ""];
-    final List<bool> selectedButton = <bool>[true, false, false];
+    final controller = WidgetStatesController();
 
-    return Row(children: [
-      ToggleButtons(
-        isSelected: selectedButton,
-        onPressed: (int index) {
-          setState(() {
-            for (int i = 0; i < _buttons.length; i++) {
-              selectedButton[i] = i == index;
-            }
-          });
-        },
-        renderBorder: false,
-        selectedColor: Color.fromRGBO(22, 25, 50, 1),
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(248, 112, 112, 1),
-                borderRadius: BorderRadius.circular(99)),
-            child: Icon(
-              Icons.check,
-            ),
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      Container(
+        height: 40,
+        width: 40,
+        child: FilledButton(
+            autofocus: true,
+            onPressed: () => ref
+                .watch(settings.colorsNotifierProvider.notifier)
+                .updateColor(settings.ColorScheme.red),
+            child: Icon(Icons.check)),
+      ),
+      Container(
+        height: 40,
+        width: 40,
+        child: FilledButton(
+          autofocus: true,
+          onPressed: () => ref
+              .watch(settings.colorsNotifierProvider.notifier)
+              .updateColor(settings.ColorScheme.blue),
+          child: Icon(
+            Icons.check,
           ),
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(112, 243, 248, 1),
-                borderRadius: BorderRadius.circular(99)),
-            child: Icon(
-              Icons.check,
-            ),
-          ),
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(216, 129, 248, 1),
-                borderRadius: BorderRadius.circular(99)),
-            child: Icon(
-              Icons.check,
-            ),
-          )
-        ],
-      )
+        ),
+      ),
+      Container(
+        height: 40,
+        width: 40,
+        child: FilledButton(
+            autofocus: true,
+            onPressed: () => ref
+                .watch(settings.colorsNotifierProvider.notifier)
+                .updateColor(settings.ColorScheme.purple),
+            child: Icon(Icons.check)),
+      ),
     ]);
   }
 }

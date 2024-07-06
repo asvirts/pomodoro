@@ -18,6 +18,7 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
   Widget build(BuildContext context) {
     final currentMode = ref.watch(modeNotifierProvider);
     final currentFont = ref.watch(fontNotifierProvider);
+    final currentColor = ref.watch(colorsNotifierProvider);
 
     TextStyle font = ref.watch(fontNotifierProvider.notifier).getCurrentFont();
 
@@ -33,7 +34,8 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
           backgroundColor: const Color.fromRGBO(22, 25, 50, 1),
           foregroundColor: const Color.fromRGBO(215, 224, 255, .4),
           selectedForegroundColor: const Color.fromRGBO(30, 33, 63, 1),
-          selectedBackgroundColor: Theme.of(context).colorScheme.primary,
+          selectedBackgroundColor:
+              ref.watch(colorsNotifierProvider.notifier).getCurrentColor(),
           side: const BorderSide(width: 0, style: BorderStyle.none),
           textStyle: GoogleFonts.kumbhSans(
             fontWeight: FontWeight.bold,
