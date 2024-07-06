@@ -25,8 +25,6 @@ class _PomodoroCountdownState extends ConsumerState<PomodoroCountdown> {
 
     int _timer = timer.first;
 
-    _controller.restart();
-
     String _timerText = started.first ? "PAUSE" : "START";
     started.first ? _controller.start() : _controller.pause();
 
@@ -42,14 +40,22 @@ class _PomodoroCountdownState extends ConsumerState<PomodoroCountdown> {
         break;
     }
 
+    formattedTime({required int timeInSecond}) {
+      int sec = timeInSecond % 60;
+      int min = (timeInSecond / 60).floor();
+      String minute = min.toString().length <= 1 ? "0$min" : "$min";
+      String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+      return "$minute:$second";
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Countdown(
           controller: _controller,
-          seconds: _timer,
+          seconds: _timer * 60,
           build: (BuildContext context, double time) => Text(
-            time.floor().toString(),
+            formattedTime(timeInSecond: time.round()),
             style: GoogleFonts.kumbhSans(
                 fontSize: 80,
                 color: Theme.of(context).canvasColor,
