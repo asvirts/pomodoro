@@ -61,6 +61,16 @@ class FontNotifier extends _$FontNotifier {
 enum ColorScheme { red, blue, purple }
 
 @riverpod
+class ColorIndex extends _$ColorIndex {
+  @override
+  int build() => 0;
+
+  void updateIndex(int i) {
+    state = i;
+  }
+}
+
+@riverpod
 class ColorsNotifier extends _$ColorsNotifier {
   @override
   Set<ColorScheme> build() {

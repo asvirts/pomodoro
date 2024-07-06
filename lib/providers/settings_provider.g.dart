@@ -21,6 +21,21 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
+String _$colorIndexHash() => r'fd937ada85bd98240e99dcebc359eaa10fac1b12';
+
+/// See also [ColorIndex].
+@ProviderFor(ColorIndex)
+final colorIndexProvider =
+    AutoDisposeNotifierProvider<ColorIndex, int>.internal(
+  ColorIndex.new,
+  name: r'colorIndexProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$colorIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ColorIndex = AutoDisposeNotifier<int>;
 String _$colorsNotifierHash() => r'8b2f0fa3efe194a5e33cdbdf3b71096c556250e0';
 
 /// See also [ColorsNotifier].
