@@ -19,19 +19,6 @@ class SettingsDialog extends ConsumerWidget {
     final settingsProvider = ref.watch(settings.settingsNotifierProvider);
     final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
-    DropdownMenu pomodoroDropdown = DropdownMenu(
-        onSelected: (value) => ref
-            .watch(pomodoroTimerNotifierProvider.notifier)
-            .updateTimerDuration(value),
-        menuStyle: MenuStyle(),
-        dropdownMenuEntries: [
-          DropdownMenuEntry(value: 15, label: "15"),
-          DropdownMenuEntry(value: 20, label: "20"),
-          DropdownMenuEntry(value: 25, label: "25"),
-          DropdownMenuEntry(value: 30, label: "30"),
-          DropdownMenuEntry(value: 35, label: "35"),
-        ]);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -65,14 +52,6 @@ class SettingsDialog extends ConsumerWidget {
                               ),
                             ]),
                       ),
-                      Row(
-                        children: [
-                          Text(settingsProvider.first.time.toString()),
-                          Text(settingsProvider.first.font.toString()),
-                          Text(settingsProvider.first.mode.toString()),
-                          Text(settingsProvider.first.colors.toString()),
-                        ],
-                      ),
                       Divider(
                         thickness: 1,
                       ),
@@ -91,26 +70,107 @@ class SettingsDialog extends ConsumerWidget {
                               ),
                             ]),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("pomodoro"),
-                          pomodoroDropdown,
-                        ],
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("pomodoro"),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(239, 241, 250, 1),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              height: 40,
+                              width: 140,
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(currentShortBreakTime.first.toString()),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.keyboard_arrow_up),
+                                      Icon(Icons.keyboard_arrow_down)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("short break"),
-                          pomodoroDropdown,
-                        ],
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("short break"),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(239, 241, 250, 1),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              height: 40,
+                              width: 140,
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(currentShortBreakTime.first.toString()),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.keyboard_arrow_up),
+                                      Icon(Icons.keyboard_arrow_down)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("long break"),
-                          pomodoroDropdown,
-                        ],
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("long break"),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(239, 241, 250, 1),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              height: 40,
+                              width: 140,
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(currentShortBreakTime.first.toString()),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.keyboard_arrow_up),
+                                      Icon(Icons.keyboard_arrow_down)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
                       ),
                       Container(
                         padding: EdgeInsets.all(16),
@@ -130,7 +190,7 @@ class SettingsDialog extends ConsumerWidget {
                         thickness: 1,
                       ),
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -143,26 +203,26 @@ class SettingsDialog extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      Divider(
-                        thickness: 1,
-                      ),
-                      Container(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FilledButton(
-                                onPressed: () => ref
-                                    .watch(settingsNotifierProvider.notifier)
-                                    .updateSettings(),
-                                style: ButtonStyle(
-                                  backgroundColor: WidgetStateProperty.all(ref
-                                      .watch(settings
-                                          .settingsNotifierProvider.notifier)
-                                      .getCurrentColor()),
-                                ),
-                                child: Text("APPLY"),
-                              )
-                            ]),
+                      FractionalTranslation(
+                        translation: Offset(0, .8),
+                        child: Container(
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FilledButton(
+                                  onPressed: () => ref
+                                      .watch(settingsNotifierProvider.notifier)
+                                      .updateSettings(),
+                                  style: ButtonStyle(
+                                    backgroundColor: WidgetStateProperty.all(ref
+                                        .watch(settings
+                                            .settingsNotifierProvider.notifier)
+                                        .getCurrentColor()),
+                                  ),
+                                  child: Text("APPLY"),
+                                )
+                              ]),
+                        ),
                       )
                     ]),
               ),
