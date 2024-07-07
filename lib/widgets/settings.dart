@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/settings_provider.dart' as settings;
+import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/radio_buttons.dart';
 
 class SettingsDialog extends ConsumerWidget {
@@ -15,6 +16,9 @@ class SettingsDialog extends ConsumerWidget {
         ref.watch(settings.shortBreakTimerNotifierProvider);
     final currentLongBreakTime =
         ref.watch(settings.longBreakTimerNotifierProvider);
+    final settingsProvider = ref.watch(settings.settingsNotifierProvider);
+
+    Settings settingsToUpdate = settingsProvider.first;
 
     DropdownMenu pomodoroDropdown =
         DropdownMenu(menuStyle: MenuStyle(), dropdownMenuEntries: [
@@ -57,6 +61,14 @@ class SettingsDialog extends ConsumerWidget {
                                 ),
                               ),
                             ]),
+                      ),
+                      Row(
+                        children: [
+                          Text(settingsProvider.first.time.toString()),
+                          Text(settingsProvider.first.font.toString()),
+                          Text(settingsProvider.first.mode.toString()),
+                          Text(settingsProvider.first.colors.toString()),
+                        ],
                       ),
                       Divider(
                         thickness: 1,
@@ -136,7 +148,9 @@ class SettingsDialog extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FilledButton(
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () => ref
+                                    .watch(settingsNotifierProvider.notifier)
+                                    .updateSettings(),
                                 style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(ref
                                       .watch(settings

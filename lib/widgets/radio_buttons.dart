@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:group_button/group_button.dart';
 import 'package:pomodoro/providers/settings_provider.dart' as settings;
+import 'package:pomodoro/providers/settings_provider.dart';
 
 class FontSelector extends ConsumerStatefulWidget {
   const FontSelector({super.key});
@@ -17,11 +18,14 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
   @override
   Widget build(BuildContext context) {
     final currentFont = ref.watch(settings.fontNotifierProvider);
+    final currentSettings = ref.watch(settings.settingsNotifierProvider);
+
+    Settings settingsToUpdate = currentSettings.first;
 
     TextStyle font =
         ref.watch(settings.fontNotifierProvider.notifier).getCurrentFont();
 
-    return const Row(children: [
+    return Row(children: [
       GroupButton(
         options: GroupButtonOptions(
             buttonHeight: 40,
@@ -57,6 +61,11 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
   Widget build(BuildContext context) {
     final currentColor = ref.watch(settings.colorsNotifierProvider);
     final currentIndex = ref.watch(settings.colorIndexProvider);
+    final currentSettings = ref.watch(settings.settingsNotifierProvider);
+
+    final color = ref.watch(settings.colorToUpdateProvider);
+
+    Settings settingsToUpdate = currentSettings.first;
 
     final controller = WidgetStatesController();
 

@@ -6,6 +6,39 @@ part of 'settings_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$settingsUpdateNotifierHash() =>
+    r'd9e1a47d2e1e0f22c1df2a46acd4d3f947cc10af';
+
+/// See also [SettingsUpdateNotifier].
+@ProviderFor(SettingsUpdateNotifier)
+final settingsUpdateNotifierProvider =
+    AutoDisposeNotifierProvider<SettingsUpdateNotifier, Set<Settings>>.internal(
+  SettingsUpdateNotifier.new,
+  name: r'settingsUpdateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$settingsUpdateNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SettingsUpdateNotifier = AutoDisposeNotifier<Set<Settings>>;
+String _$settingsNotifierHash() => r'ff3d2cb938940e72d2d9854887abb2e972ffcd6b';
+
+/// See also [SettingsNotifier].
+@ProviderFor(SettingsNotifier)
+final settingsNotifierProvider =
+    AutoDisposeNotifierProvider<SettingsNotifier, Set<Settings>>.internal(
+  SettingsNotifier.new,
+  name: r'settingsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$settingsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SettingsNotifier = AutoDisposeNotifier<Set<Settings>>;
 String _$fontNotifierHash() => r'cba4578378e0286b3df815a953b5e30638b4ed82';
 
 /// See also [FontNotifier].

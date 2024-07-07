@@ -1,8 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/modes_provider.dart';
+import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_provider.g.dart';
+
+class Settings {
+  int? time = 25;
+  Modes? mode = Modes.pomodoro;
+  Fonts? font = Fonts.sans;
+  ColorScheme? colors = ColorScheme.red;
+
+  Settings(this.time, this.font, this.mode, this.colors);
+}
+
+@riverpod
+class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
+  Settings settings = Settings(25, Fonts.sans, Modes.pomodoro, ColorScheme.red);
+
+  @override
+  Set<Settings> build() {
+    final time = ref.watch(timerNotifierProvider);
+    final font = ref.watch(fontNotifierProvider);
+    final mode = ref.watch(modeNotifierProvider);
+    final color = ref.watch(colorsNotifierProvider);
+
+    Settings stf = Settings(time.first, font.first, mode.first, color.first);
+
+    return {settings};
+  }
+}
+
+@riverpod
+class SettingsNotifier extends _$SettingsNotifier {
+  Settings settings = Settings(25, Fonts.sans, Modes.pomodoro, ColorScheme.red);
+
+  @override
+  Set<Settings> build() {
+    return {settings};
+  }
+
+  void updateSettings() {
+    final fetch = ref.watch(settingsUpdateNotifierProvider);
+    Settings stg = Settings(fetch.first.time, fetch.first.font,
+        fetch.first.mode, fetch.first.colors);
+    state = {stg};
+  }
+}
 
 // Fonts and color scheme
 
