@@ -17,17 +17,20 @@ class SettingsDialog extends ConsumerWidget {
     final currentLongBreakTime =
         ref.watch(settings.longBreakTimerNotifierProvider);
     final settingsProvider = ref.watch(settings.settingsNotifierProvider);
+    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
-    Settings settingsToUpdate = settingsProvider.first;
-
-    DropdownMenu pomodoroDropdown =
-        DropdownMenu(menuStyle: MenuStyle(), dropdownMenuEntries: [
-      DropdownMenuEntry(value: 1, label: "1"),
-      DropdownMenuEntry(value: 1, label: "2"),
-      DropdownMenuEntry(value: 1, label: "3"),
-      DropdownMenuEntry(value: 1, label: "4"),
-      DropdownMenuEntry(value: 1, label: "5"),
-    ]);
+    DropdownMenu pomodoroDropdown = DropdownMenu(
+        onSelected: (value) => ref
+            .watch(pomodoroTimerNotifierProvider.notifier)
+            .updateTimerDuration(value),
+        menuStyle: MenuStyle(),
+        dropdownMenuEntries: [
+          DropdownMenuEntry(value: 15, label: "15"),
+          DropdownMenuEntry(value: 20, label: "20"),
+          DropdownMenuEntry(value: 25, label: "25"),
+          DropdownMenuEntry(value: 30, label: "30"),
+          DropdownMenuEntry(value: 35, label: "35"),
+        ]);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +157,7 @@ class SettingsDialog extends ConsumerWidget {
                                 style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(ref
                                       .watch(settings
-                                          .colorsNotifierProvider.notifier)
+                                          .settingsNotifierProvider.notifier)
                                       .getCurrentColor()),
                                 ),
                                 child: Text("APPLY"),

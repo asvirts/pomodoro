@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
@@ -26,9 +27,53 @@ class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
     final mode = ref.watch(modeNotifierProvider);
     final color = ref.watch(colorsNotifierProvider);
 
-    Settings stf = Settings(time.first, font.first, mode.first, color.first);
+    Settings stg = Settings(time.first, Fonts.sans, mode.first, color.first);
 
     return {settings};
+  }
+
+  // Fonts
+
+  void updateFonts(int index) {
+    final time = ref.watch(timerNotifierProvider);
+    final mode = ref.watch(modeNotifierProvider);
+    final colors = ref.watch(colorsNotifierProvider);
+
+    Fonts? newFont;
+
+    switch (index) {
+      case 0:
+        newFont = Fonts.sans;
+        break;
+      case 1:
+        newFont = Fonts.serif;
+        break;
+      case 2:
+        newFont = Fonts.mono;
+        break;
+      default:
+        newFont = Fonts.sans;
+    }
+
+    Settings stg = Settings(time.first, newFont, mode.first, colors.first);
+
+    if (stg.font != newFont) {
+      state = {stg};
+    }
+  }
+
+  // Colors
+
+  void updateColor(ColorScheme newScheme) {
+    final time = ref.watch(timerNotifierProvider);
+    final font = ref.watch(fontNotifierProvider);
+    final mode = ref.watch(modeNotifierProvider);
+
+    Settings stg = Settings(time.first, Fonts.sans, mode.first, newScheme);
+
+    if (stg.colors != newScheme) {
+      state = {stg};
+    }
   }
 }
 
@@ -45,25 +90,16 @@ class SettingsNotifier extends _$SettingsNotifier {
     final fetch = ref.watch(settingsUpdateNotifierProvider);
     Settings stg = Settings(fetch.first.time, fetch.first.font,
         fetch.first.mode, fetch.first.colors);
+    settings = stg;
     state = {stg};
   }
-}
 
-// Fonts and color scheme
-
-enum Fonts { sans, serif, mono }
-
-@riverpod
-class FontNotifier extends _$FontNotifier {
-  @override
-  Set<Fonts> build() {
-    return {Fonts.sans};
-  }
+  // Fonts
 
   TextStyle getCurrentFont() {
     TextStyle? newFont;
 
-    switch (state.first) {
+    switch (state.first.font) {
       case Fonts.sans:
         newFont = GoogleFonts.kumbhSans();
         break;
@@ -73,6 +109,8 @@ class FontNotifier extends _$FontNotifier {
       case Fonts.mono:
         newFont = GoogleFonts.spaceMono();
         break;
+      default:
+        newFont = GoogleFonts.kumbhSans();
     }
 
     return newFont;
@@ -91,36 +129,14 @@ class FontNotifier extends _$FontNotifier {
       case Fonts.mono:
         newTheme = GoogleFonts.spaceMonoTextTheme();
         break;
+      default:
+        newTheme = GoogleFonts.kumbhSansTextTheme();
     }
 
     return newTheme;
   }
 
-  void updateFonts(Fonts newFonts) {
-    if (state != newFonts) {
-      state = {newFonts};
-    }
-  }
-}
-
-enum ColorScheme { red, blue, purple }
-
-@riverpod
-class ColorIndex extends _$ColorIndex {
-  @override
-  int build() => 0;
-
-  void updateIndex(int i) {
-    state = i;
-  }
-}
-
-@riverpod
-class ColorsNotifier extends _$ColorsNotifier {
-  @override
-  Set<ColorScheme> build() {
-    return const {ColorScheme.red};
-  }
+  // Colors
 
   Color getCurrentColor() {
     Color? newColor;
@@ -135,15 +151,33 @@ class ColorsNotifier extends _$ColorsNotifier {
       case ColorScheme.purple:
         newColor = const Color.fromRGBO(216, 129, 248, 1);
         break;
+      default:
+        newColor = const Color.fromRGBO(248, 112, 112, 1);
     }
 
     return newColor;
   }
+}
 
-  void updateColor(ColorScheme newScheme) {
-    if (state != newScheme) {
-      state = {newScheme};
-    }
+// Fonts
+
+enum Fonts { sans, serif, mono }
+
+@riverpod
+class FontNotifier extends _$FontNotifier {
+  @override
+  Set<Fonts> build() {
+    return {Fonts.sans};
+  }
+}
+
+enum ColorScheme { red, blue, purple }
+
+@riverpod
+class ColorsNotifier extends _$ColorsNotifier {
+  @override
+  Set<ColorScheme> build() {
+    return const {ColorScheme.red};
   }
 }
 

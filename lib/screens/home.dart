@@ -15,7 +15,7 @@ class Home extends ConsumerWidget {
     final currentColor = ref.watch(colorsNotifierProvider);
 
     TextStyle textStyle =
-        ref.watch(fontNotifierProvider.notifier).getCurrentFont();
+        ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(30, 33, 63, 1),

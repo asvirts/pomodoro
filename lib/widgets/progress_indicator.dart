@@ -71,7 +71,7 @@ class _ProgressIndicatorWidgetState
                   height: 248,
                   child: CircularProgressIndicator(
                     color: ref
-                        .watch(colorsNotifierProvider.notifier)
+                        .watch(settingsNotifierProvider.notifier)
                         .getCurrentColor(),
                     strokeWidth: 12,
                     strokeCap: StrokeCap.round,

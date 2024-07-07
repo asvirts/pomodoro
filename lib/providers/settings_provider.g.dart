@@ -7,7 +7,7 @@ part of 'settings_provider.dart';
 // **************************************************************************
 
 String _$settingsUpdateNotifierHash() =>
-    r'd9e1a47d2e1e0f22c1df2a46acd4d3f947cc10af';
+    r'10bcafca40dc5f5849d7af9cf8bebb62f72c09c4';
 
 /// See also [SettingsUpdateNotifier].
 @ProviderFor(SettingsUpdateNotifier)
@@ -23,7 +23,7 @@ final settingsUpdateNotifierProvider =
 );
 
 typedef _$SettingsUpdateNotifier = AutoDisposeNotifier<Set<Settings>>;
-String _$settingsNotifierHash() => r'ff3d2cb938940e72d2d9854887abb2e972ffcd6b';
+String _$settingsNotifierHash() => r'443b15c008a81c6e00da752e1b2f54461da67459';
 
 /// See also [SettingsNotifier].
 @ProviderFor(SettingsNotifier)
@@ -39,7 +39,7 @@ final settingsNotifierProvider =
 );
 
 typedef _$SettingsNotifier = AutoDisposeNotifier<Set<Settings>>;
-String _$fontNotifierHash() => r'cba4578378e0286b3df815a953b5e30638b4ed82';
+String _$fontNotifierHash() => r'05548db62854f7db2fdbd4aa71db9ea6d2385a6b';
 
 /// See also [FontNotifier].
 @ProviderFor(FontNotifier)
@@ -54,22 +54,7 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
-String _$colorIndexHash() => r'fd937ada85bd98240e99dcebc359eaa10fac1b12';
-
-/// See also [ColorIndex].
-@ProviderFor(ColorIndex)
-final colorIndexProvider =
-    AutoDisposeNotifierProvider<ColorIndex, int>.internal(
-  ColorIndex.new,
-  name: r'colorIndexProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$colorIndexHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ColorIndex = AutoDisposeNotifier<int>;
-String _$colorsNotifierHash() => r'8b2f0fa3efe194a5e33cdbdf3b71096c556250e0';
+String _$colorsNotifierHash() => r'a4a9cd33a59b3d6a79055ce0ec718c812cb46303';
 
 /// See also [ColorsNotifier].
 @ProviderFor(ColorsNotifier)

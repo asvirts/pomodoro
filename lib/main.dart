@@ -16,16 +16,16 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFont = ref.watch(fontNotifierProvider);
-    final selectedColor = ref.watch(colorsNotifierProvider);
+    final currentSettings = ref.watch(settingsNotifierProvider);
 
     return MaterialApp(
         theme: ThemeData(
           primaryColor:
-              ref.watch(colorsNotifierProvider.notifier).getCurrentColor(),
+              ref.watch(settingsNotifierProvider.notifier).getCurrentColor(),
           canvasColor: const Color.fromRGBO(215, 224, 255, 1),
-          textTheme:
-              ref.watch(fontNotifierProvider.notifier).getCurrentFontTheme(),
+          textTheme: ref
+              .watch(settingsNotifierProvider.notifier)
+              .getCurrentFontTheme(),
         ),
         home: const Home());
   }

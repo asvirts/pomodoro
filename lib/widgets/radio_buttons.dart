@@ -23,7 +23,7 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
     Settings settingsToUpdate = currentSettings.first;
 
     TextStyle font =
-        ref.watch(settings.fontNotifierProvider.notifier).getCurrentFont();
+        ref.watch(settings.settingsNotifierProvider.notifier).getCurrentFont();
 
     return Row(children: [
       GroupButton(
@@ -44,6 +44,9 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
             borderRadius: BorderRadius.all(Radius.circular(999))),
         isRadio: true,
         buttons: ["Aa", "Aa", "Aa"],
+        onSelected: (value, index, isSelected) => () => ref
+            .watch(settings.settingsUpdateNotifierProvider.notifier)
+            .updateFonts(index),
       )
     ]);
   }
@@ -59,13 +62,8 @@ class ColorSelector extends ConsumerStatefulWidget {
 class _ColorSelectorState extends ConsumerState<ColorSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentColor = ref.watch(settings.colorsNotifierProvider);
-    final currentIndex = ref.watch(settings.colorIndexProvider);
     final currentSettings = ref.watch(settings.settingsNotifierProvider);
-
-    final color = ref.watch(settings.colorToUpdateProvider);
-
-    Settings settingsToUpdate = currentSettings.first;
+    final settingsToUpdate = ref.watch(settings.settingsUpdateNotifierProvider);
 
     final controller = WidgetStatesController();
 
@@ -80,7 +78,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
             ),
             autofocus: true,
             onPressed: () => ref
-                .watch(settings.colorsNotifierProvider.notifier)
+                .watch(settings.settingsUpdateNotifierProvider.notifier)
                 .updateColor(settings.ColorScheme.red),
             child: Icon(Icons.check)),
       ),
@@ -95,7 +93,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
           ),
           autofocus: true,
           onPressed: () => ref
-              .watch(settings.colorsNotifierProvider.notifier)
+              .watch(settings.settingsUpdateNotifierProvider.notifier)
               .updateColor(settings.ColorScheme.blue),
           child: Icon(
             Icons.check,
@@ -112,7 +110,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
             ),
             autofocus: true,
             onPressed: () => ref
-                .watch(settings.colorsNotifierProvider.notifier)
+                .watch(settings.settingsUpdateNotifierProvider.notifier)
                 .updateColor(settings.ColorScheme.purple),
             child: Icon(Icons.check)),
       ),
