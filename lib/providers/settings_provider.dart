@@ -90,6 +90,8 @@ class SettingsNotifier extends _$SettingsNotifier {
     final fetch = ref.watch(settingsUpdateNotifierProvider);
     Settings stg = Settings(fetch.first.time, fetch.first.font,
         fetch.first.mode, fetch.first.colors);
+
+    
     settings = stg;
     state = {stg};
   }

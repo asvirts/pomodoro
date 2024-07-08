@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/countdown.dart';
-import 'package:timer_count_down/timer_count_down.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
@@ -29,7 +25,7 @@ class _ProgressIndicatorWidgetState
       vsync: this,
       duration: Duration(seconds: currentDuration.first),
     );
-    controller.reverse(from: 100);
+
     super.initState();
   }
 
@@ -43,6 +39,9 @@ class _ProgressIndicatorWidgetState
   Widget build(BuildContext context) {
     final currentSettings = ref.watch(settingsNotifierProvider);
     final currentColor = ref.watch(colorsNotifierProvider);
+    final currentDuration = ref.watch(timerNotifierProvider);
+
+    controller.duration = Duration(seconds: currentDuration.first);
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -71,12 +70,11 @@ class _ProgressIndicatorWidgetState
                   width: 248,
                   height: 248,
                   child: CircularProgressIndicator(
-                    color: ref
-                        .watch(settingsNotifierProvider.notifier)
-                        .getCurrentColor(),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
                     strokeWidth: 12,
                     strokeCap: StrokeCap.round,
-                    value: controller.value,
+                    value: currentDuration.first.toDouble(),
                     semanticsLabel: 'Time remaining in current pomodoro',
                   ),
                 ),
