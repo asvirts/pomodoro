@@ -1,8 +1,9 @@
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
-import 'package:pomodoro/widgets/countdown.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
@@ -13,35 +14,16 @@ class ProgressIndicatorWidget extends ConsumerStatefulWidget {
 }
 
 class _ProgressIndicatorWidgetState
-    extends ConsumerState<ProgressIndicatorWidget>
-    with TickerProviderStateMixin {
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    final currentDuration = ref.read(timerNotifierProvider);
-
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: currentDuration.first),
-    );
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
+    extends ConsumerState<ProgressIndicatorWidget> {
   @override
   Widget build(BuildContext context) {
     final currentSettings = ref.watch(settingsNotifierProvider);
     final currentColor = ref.watch(colorsNotifierProvider);
     final currentDuration = ref.watch(timerNotifierProvider);
+    final timerStarted = ref.watch(timerStartedNotifierProvider);
+    final timerText = ref.watch(timerTextNotifierProvider);
 
-    controller.duration = Duration(seconds: currentDuration.first);
+    final CountDownController controller = CountDownController();
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -66,20 +48,43 @@ class _ProgressIndicatorWidgetState
           child: Stack(
             children: <Widget>[
               Center(
-                child: SizedBox(
-                  width: 248,
-                  height: 248,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        Theme.of(context).primaryColor),
-                    strokeWidth: 12,
+                child: Column(children: [
+                  CircularCountDownTimer(
+                    controller: controller,
+                    width: 248,
+                    height: 248,
+                    duration: currentDuration.first * 60,
+                    isReverseAnimation: true,
+                    isReverse: true,
                     strokeCap: StrokeCap.round,
-                    value: currentDuration.first.toDouble(),
-                    semanticsLabel: 'Time remaining in current pomodoro',
+                    strokeWidth: 8,
+                    fillColor: Theme.of(context).primaryColor,
+                    ringColor: Colors.transparent,
+                    textStyle: GoogleFonts.kumbhSans(
+                        fontSize: 80,
+                        color: Theme.of(context).canvasColor,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
+                ]),
               ),
-              Center(child: PomodoroCountdown()),
+              Positioned(
+                top: 165,
+                left: 75,
+                child: ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStateColor.transparent,
+                    ),
+                    onPressed: () => {
+                          if (controller.isPaused)
+                            {controller.resume()}
+                          else
+                            {controller.pause()},
+                          ref
+                              .watch(timerTextNotifierProvider.notifier)
+                              .swapTimer()
+                        },
+                    child: Text(timerText.first)),
+              )
             ],
           ),
         ),

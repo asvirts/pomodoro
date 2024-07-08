@@ -20,6 +20,22 @@ final currentModeProvider = AutoDisposeProvider<Modes>.internal(
 );
 
 typedef CurrentModeRef = AutoDisposeProviderRef<Modes>;
+String _$timerTextNotifierHash() => r'fe34762527b4ff5a706995dcb6b11f36357fe22b';
+
+/// See also [TimerTextNotifier].
+@ProviderFor(TimerTextNotifier)
+final timerTextNotifierProvider =
+    AutoDisposeNotifierProvider<TimerTextNotifier, Set<String>>.internal(
+  TimerTextNotifier.new,
+  name: r'timerTextNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$timerTextNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$TimerTextNotifier = AutoDisposeNotifier<Set<String>>;
 String _$timerStartedNotifierHash() =>
     r'4eb782d0a902170309061d2b7f980e2fa16eb8b8';
 

@@ -91,7 +91,6 @@ class SettingsNotifier extends _$SettingsNotifier {
     Settings stg = Settings(fetch.first.time, fetch.first.font,
         fetch.first.mode, fetch.first.colors);
 
-    
     settings = stg;
     state = {stg};
   }

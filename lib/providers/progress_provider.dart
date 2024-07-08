@@ -12,6 +12,25 @@ Modes currentMode(ref) {
 }
 
 @riverpod
+class TimerTextNotifier extends _$TimerTextNotifier {
+  @override
+  Set<String> build() {
+    return const {"PAUSE"};
+  }
+
+  void swapTimer() {
+    switch (state.first) {
+      case "START":
+        state = {"PAUSE"};
+        break;
+      case "PAUSE":
+        state = {"START"};
+        break;
+    }
+  }
+}
+
+@riverpod
 class TimerStartedNotifier extends _$TimerStartedNotifier {
   @override
   Set<bool> build() {
