@@ -209,7 +209,84 @@ class ColorsNotifier extends _$ColorsNotifier {
   }
 }
 
+@riverpod
+class SelectedColor extends _$SelectedColor {
+  @override
+  Set<int> build() {
+    return {0};
+  }
+
+  void selectColor(int index) {
+    switch (index) {
+      case 0:
+        ref.watch(colorRedSelectedProvider.notifier).select();
+        ref.watch(colorBlueSelectedProvider.notifier).deselect();
+        ref.watch(colorPurpleSelectedProvider.notifier).deselect();
+        break;
+      case 1:
+        ref.watch(colorRedSelectedProvider.notifier).deselect();
+        ref.watch(colorBlueSelectedProvider.notifier).select();
+        ref.watch(colorPurpleSelectedProvider.notifier).deselect();
+        break;
+      case 2:
+        ref.watch(colorRedSelectedProvider.notifier).deselect();
+        ref.watch(colorBlueSelectedProvider.notifier).deselect();
+        ref.watch(colorPurpleSelectedProvider.notifier).select();
+        break;
+    }
+  }
+}
+
+@riverpod
+class ColorRedSelected extends _$ColorRedSelected {
+  @override
+  Set<bool> build() {
+    return {true};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
+@riverpod
+class ColorBlueSelected extends _$ColorRedSelected {
+  @override
+  Set<bool> build() {
+    return {false};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
+@riverpod
+class ColorPurpleSelected extends _$ColorRedSelected {
+  @override
+  Set<bool> build() {
+    return {false};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
 // Timers
+
 @riverpod
 class PomodoroTimerNotifier extends _$PomodoroTimerNotifier {
   @override

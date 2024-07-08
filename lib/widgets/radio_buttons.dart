@@ -64,9 +64,9 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
     final currentSettings = ref.watch(settings.settingsNotifierProvider);
     final settingsToUpdate = ref.watch(settings.settingsUpdateNotifierProvider);
 
-    bool redSelected = true;
-    bool blueSelected = false;
-    bool purpleSelected = false;
+    final red = ref.watch(colorRedSelectedProvider);
+    final blue = ref.watch(colorBlueSelectedProvider);
+    final purple = ref.watch(colorPurpleSelectedProvider);
 
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       Container(
@@ -77,16 +77,9 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(248, 112, 112, 1)),
             ),
-            isSelected: redSelected,
-            autofocus: true,
-            onPressed: () => {
-                  ref
-                      .watch(settings.colorsNotifierProvider.notifier)
-                      .updateColor(settings.ColorScheme.blue),
-                  redSelected = true,
-                  blueSelected = false,
-                  purpleSelected = false,
-                },
+            isSelected: red.first,
+            onPressed: () =>
+                ref.watch(selectedColorProvider.notifier).selectColor(0),
             icon: Icon(
               Icons.check,
               color: Colors.transparent,
@@ -101,19 +94,13 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: IconButton(
-            isSelected: blueSelected,
+            isSelected: blue.first,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(112, 243, 248, 1)),
             ),
-            onPressed: () => {
-                  ref
-                      .watch(settings.colorsNotifierProvider.notifier)
-                      .updateColor(settings.ColorScheme.blue),
-                  redSelected = false,
-                  blueSelected = true,
-                  purpleSelected = false,
-                },
+            onPressed: () =>
+                ref.watch(selectedColorProvider.notifier).selectColor(1),
             icon: Icon(
               Icons.check,
               color: Colors.transparent,
@@ -127,19 +114,13 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: IconButton(
-            isSelected: purpleSelected,
+            isSelected: purple.first,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(216, 129, 248, 1)),
             ),
-            onPressed: () => {
-                  ref
-                      .watch(settings.colorsNotifierProvider.notifier)
-                      .updateColor(settings.ColorScheme.purple),
-                  redSelected = false,
-                  blueSelected = false,
-                  purpleSelected = true,
-                },
+            onPressed: () =>
+                ref.watch(selectedColorProvider.notifier).selectColor(2),
             icon: Icon(
               Icons.check,
               color: Colors.transparent,
