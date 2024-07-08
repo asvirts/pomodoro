@@ -19,15 +19,14 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
   Widget build(BuildContext context) {
     final currentFont = ref.watch(settings.fontNotifierProvider);
     final currentSettings = ref.watch(settings.settingsNotifierProvider);
-
-    Settings settingsToUpdate = currentSettings.first;
+    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
     TextStyle font =
         ref.watch(settings.settingsNotifierProvider.notifier).getCurrentFont();
 
     return Row(children: [
       GroupButton(
-        options: GroupButtonOptions(
+        options: const GroupButtonOptions(
             buttonHeight: 40,
             buttonWidth: 40,
             spacing: 16,
@@ -45,7 +44,7 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
         isRadio: true,
         buttons: ["Aa", "Aa", "Aa"],
         onSelected: (value, index, isSelected) => () => ref
-            .watch(settings.settingsUpdateNotifierProvider.notifier)
+            .watch(settings.fontNotifierProvider.notifier)
             .updateFonts(index),
       )
     ]);
@@ -65,54 +64,90 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
     final currentSettings = ref.watch(settings.settingsNotifierProvider);
     final settingsToUpdate = ref.watch(settings.settingsUpdateNotifierProvider);
 
-    final controller = WidgetStatesController();
+    bool redSelected = true;
+    bool blueSelected = false;
+    bool purpleSelected = false;
 
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       Container(
         height: 40,
         width: 40,
-        child: FilledButton(
+        child: IconButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(248, 112, 112, 1)),
             ),
+            isSelected: redSelected,
             autofocus: true,
-            onPressed: () => ref
-                .watch(settings.settingsUpdateNotifierProvider.notifier)
-                .updateColor(settings.ColorScheme.red),
-            child: Icon(Icons.check)),
+            onPressed: () => {
+                  ref
+                      .watch(settings.colorsNotifierProvider.notifier)
+                      .updateColor(settings.ColorScheme.blue),
+                  redSelected = true,
+                  blueSelected = false,
+                  purpleSelected = false,
+                },
+            icon: Icon(
+              Icons.check,
+              color: Colors.transparent,
+            ),
+            selectedIcon: Icon(
+              Icons.check,
+              color: Color.fromRGBO(22, 25, 50, 1),
+            )),
       ),
       Container(
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 40,
         width: 40,
-        child: FilledButton(
-          style: ButtonStyle(
-            backgroundColor:
-                WidgetStateProperty.all(const Color.fromRGBO(112, 243, 248, 1)),
-          ),
-          autofocus: true,
-          onPressed: () => ref
-              .watch(settings.settingsUpdateNotifierProvider.notifier)
-              .updateColor(settings.ColorScheme.blue),
-          child: Icon(
-            Icons.check,
-          ),
-        ),
+        child: IconButton(
+            isSelected: blueSelected,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                  const Color.fromRGBO(112, 243, 248, 1)),
+            ),
+            onPressed: () => {
+                  ref
+                      .watch(settings.colorsNotifierProvider.notifier)
+                      .updateColor(settings.ColorScheme.blue),
+                  redSelected = false,
+                  blueSelected = true,
+                  purpleSelected = false,
+                },
+            icon: Icon(
+              Icons.check,
+              color: Colors.transparent,
+            ),
+            selectedIcon: Icon(
+              Icons.check,
+              color: Color.fromRGBO(22, 25, 50, 1),
+            )),
       ),
       Container(
         height: 40,
         width: 40,
-        child: FilledButton(
+        child: IconButton(
+            isSelected: purpleSelected,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(216, 129, 248, 1)),
             ),
-            autofocus: true,
-            onPressed: () => ref
-                .watch(settings.settingsUpdateNotifierProvider.notifier)
-                .updateColor(settings.ColorScheme.purple),
-            child: Icon(Icons.check)),
+            onPressed: () => {
+                  ref
+                      .watch(settings.colorsNotifierProvider.notifier)
+                      .updateColor(settings.ColorScheme.purple),
+                  redSelected = false,
+                  blueSelected = false,
+                  purpleSelected = true,
+                },
+            icon: Icon(
+              Icons.check,
+              color: Colors.transparent,
+            ),
+            selectedIcon: Icon(
+              Icons.check,
+              color: Color.fromRGBO(22, 25, 50, 1),
+            )),
       ),
     ]);
   }

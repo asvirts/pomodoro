@@ -7,7 +7,7 @@ part of 'settings_provider.dart';
 // **************************************************************************
 
 String _$settingsUpdateNotifierHash() =>
-    r'10bcafca40dc5f5849d7af9cf8bebb62f72c09c4';
+    r'5291af3589f69784d2cb3513935469ef89b62057';
 
 /// See also [SettingsUpdateNotifier].
 @ProviderFor(SettingsUpdateNotifier)
@@ -39,7 +39,7 @@ final settingsNotifierProvider =
 );
 
 typedef _$SettingsNotifier = AutoDisposeNotifier<Set<Settings>>;
-String _$fontNotifierHash() => r'05548db62854f7db2fdbd4aa71db9ea6d2385a6b';
+String _$fontNotifierHash() => r'127b9c77c4963b603172660778d0d71204fa40be';
 
 /// See also [FontNotifier].
 @ProviderFor(FontNotifier)
@@ -54,7 +54,7 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
-String _$colorsNotifierHash() => r'a4a9cd33a59b3d6a79055ce0ec718c812cb46303';
+String _$colorsNotifierHash() => r'03034d49df0c775b12dc5d7d7b2a4d548b6fa6ba';
 
 /// See also [ColorsNotifier].
 @ProviderFor(ColorsNotifier)
@@ -71,7 +71,7 @@ final colorsNotifierProvider =
 
 typedef _$ColorsNotifier = AutoDisposeNotifier<Set<ColorScheme>>;
 String _$pomodoroTimerNotifierHash() =>
-    r'9a9c59bf03fc6fc3e111bbc27771842ce0bbc6a0';
+    r'679ac3ec4c94f5a450fd36a19a8dfafe6c16fcea';
 
 /// See also [PomodoroTimerNotifier].
 @ProviderFor(PomodoroTimerNotifier)
@@ -88,7 +88,7 @@ final pomodoroTimerNotifierProvider =
 
 typedef _$PomodoroTimerNotifier = AutoDisposeNotifier<Set<int>>;
 String _$shortBreakTimerNotifierHash() =>
-    r'662dd8cc0d34419329a31a816bf4d4b370d1d73a';
+    r'27504a7fc42b77fd127e132a15a56564241dc00d';
 
 /// See also [ShortBreakTimerNotifier].
 @ProviderFor(ShortBreakTimerNotifier)
@@ -105,7 +105,7 @@ final shortBreakTimerNotifierProvider =
 
 typedef _$ShortBreakTimerNotifier = AutoDisposeNotifier<Set<int>>;
 String _$longBreakTimerNotifierHash() =>
-    r'73ac5972f7ad204b7ccf0fe419199998df8727d5';
+    r'73178a14949b4112e18776b8ab160fd76a73dd0e';
 
 /// See also [LongBreakTimerNotifier].
 @ProviderFor(LongBreakTimerNotifier)

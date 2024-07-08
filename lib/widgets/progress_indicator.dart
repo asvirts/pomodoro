@@ -41,6 +41,7 @@ class _ProgressIndicatorWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final currentSettings = ref.watch(settingsNotifierProvider);
     final currentColor = ref.watch(colorsNotifierProvider);
 
     return Container(

@@ -23,36 +23,45 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
     TextStyle font =
         ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
 
-    return Container(
-      decoration: BoxDecoration(
-          color: const Color.fromRGBO(22, 25, 50, 1),
-          borderRadius: BorderRadius.circular(999)),
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: SegmentedButton<Modes>(
-        showSelectedIcon: false,
-        style: SegmentedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-          backgroundColor: const Color.fromRGBO(22, 25, 50, 1),
-          foregroundColor: const Color.fromRGBO(215, 224, 255, .4),
-          selectedForegroundColor: const Color.fromRGBO(30, 33, 63, 1),
-          selectedBackgroundColor:
-              ref.watch(settingsNotifierProvider.notifier).getCurrentColor(),
-          side: const BorderSide(width: 0, style: BorderStyle.none),
-          textStyle: font,
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: const Color.fromRGBO(22, 25, 50, 1),
+              borderRadius: BorderRadius.circular(999)),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          child: SegmentedButton<Modes>(
+            showSelectedIcon: false,
+            style: SegmentedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              backgroundColor: const Color.fromRGBO(22, 25, 50, 1),
+              foregroundColor: const Color.fromRGBO(215, 224, 255, .4),
+              selectedForegroundColor: const Color.fromRGBO(30, 33, 63, 1),
+              selectedBackgroundColor: ref
+                  .watch(settingsNotifierProvider.notifier)
+                  .getCurrentColor(),
+              side: const BorderSide(width: 0, style: BorderStyle.none),
+              textStyle: font,
+            ),
+            segments: <ButtonSegment<Modes>>[
+              ButtonSegment<Modes>(
+                  value: Modes.pomodoro, label: Text('pomodoro', style: font)),
+              ButtonSegment<Modes>(
+                  value: Modes.shortBreak,
+                  label: Text('short break', style: font)),
+              ButtonSegment<Modes>(
+                  value: Modes.longBreak,
+                  label: Text('long break', style: font)),
+            ],
+            selected: currentMode,
+            onSelectionChanged: (Set<Modes> newSelection) => [
+              ref
+                  .watch(modeNotifierProvider.notifier)
+                  .updateMode(newSelection.first)
+            ],
+          ),
         ),
-        segments: <ButtonSegment<Modes>>[
-          ButtonSegment<Modes>(
-              value: Modes.pomodoro, label: Text('pomodoro', style: font)),
-          ButtonSegment<Modes>(
-              value: Modes.shortBreak, label: Text('short break', style: font)),
-          ButtonSegment<Modes>(
-              value: Modes.longBreak, label: Text('long break', style: font)),
-        ],
-        selected: currentMode,
-        onSelectionChanged: (Set<Modes> newSelection) => [
-          ref.read(modeNotifierProvider.notifier).updateMode(newSelection.first)
-        ],
-      ),
+      ],
     );
   }
 }

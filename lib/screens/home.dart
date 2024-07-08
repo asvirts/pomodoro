@@ -11,8 +11,8 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentFont = ref.watch(fontNotifierProvider);
-    final currentColor = ref.watch(colorsNotifierProvider);
+    final currentSettings = ref.watch(settingsNotifierProvider);
+    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
     TextStyle textStyle =
         ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
@@ -48,7 +48,7 @@ class Home extends ConsumerWidget {
                 ProgressIndicatorWidget(),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SettingsDialog(),

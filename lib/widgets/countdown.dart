@@ -50,6 +50,7 @@ class _PomodoroCountdownState extends ConsumerState<PomodoroCountdown> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Countdown(
           controller: _controller,
@@ -65,6 +66,7 @@ class _PomodoroCountdownState extends ConsumerState<PomodoroCountdown> {
         ),
         ElevatedButton(
             style: const ButtonStyle(
+                visualDensity: VisualDensity.compact,
                 backgroundColor: WidgetStateColor.transparent,
                 foregroundColor: WidgetStateColor.transparent,
                 shadowColor: WidgetStateColor.transparent),

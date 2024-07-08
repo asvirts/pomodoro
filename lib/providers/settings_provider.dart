@@ -27,7 +27,7 @@ class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
     final mode = ref.watch(modeNotifierProvider);
     final color = ref.watch(colorsNotifierProvider);
 
-    Settings stg = Settings(time.first, Fonts.sans, mode.first, color.first);
+    Settings stg = Settings(time.first, font.first, mode.first, color.first);
 
     return {settings};
   }
@@ -169,6 +169,28 @@ class FontNotifier extends _$FontNotifier {
   Set<Fonts> build() {
     return {Fonts.sans};
   }
+
+  void updateFonts(int index) {
+    Fonts? newFont;
+
+    switch (index) {
+      case 0:
+        newFont = Fonts.sans;
+        break;
+      case 1:
+        newFont = Fonts.serif;
+        break;
+      case 2:
+        newFont = Fonts.mono;
+        break;
+      default:
+        newFont = Fonts.sans;
+    }
+
+    if (state != newFont) {
+      state = {newFont};
+    }
+  }
 }
 
 enum ColorScheme { red, blue, purple }
@@ -178,6 +200,12 @@ class ColorsNotifier extends _$ColorsNotifier {
   @override
   Set<ColorScheme> build() {
     return const {ColorScheme.red};
+  }
+
+  void updateColor(ColorScheme newScheme) {
+    if (state != newScheme) {
+      state = {newScheme};
+    }
   }
 }
 
@@ -198,6 +226,23 @@ class PomodoroTimerNotifier extends _$PomodoroTimerNotifier {
       state = {newValue};
     }
   }
+
+  void incrementTimer() {
+    int newValue = state.first + 1;
+    state = {newValue};
+  }
+
+  void decrementTimer() {
+    int newValue;
+
+    if (state.first <= 1) {
+      newValue = 1;
+    } else {
+      newValue = state.first - 1;
+    }
+
+    state = {newValue};
+  }
 }
 
 @riverpod
@@ -216,6 +261,23 @@ class ShortBreakTimerNotifier extends _$ShortBreakTimerNotifier {
       state = {newValue};
     }
   }
+
+  void incrementTimer() {
+    int newValue = state.first + 1;
+    state = {newValue};
+  }
+
+  void decrementTimer() {
+    int newValue;
+
+    if (state.first <= 1) {
+      newValue = 1;
+    } else {
+      newValue = state.first - 1;
+    }
+
+    state = {newValue};
+  }
 }
 
 @riverpod
@@ -233,5 +295,22 @@ class LongBreakTimerNotifier extends _$LongBreakTimerNotifier {
     if (state != newValue) {
       state = {newValue};
     }
+  }
+
+  void incrementTimer() {
+    int newValue = state.first + 1;
+    state = {newValue};
+  }
+
+  void decrementTimer() {
+    int newValue;
+
+    if (state.first <= 1) {
+      newValue = 1;
+    } else {
+      newValue = state.first - 1;
+    }
+
+    state = {newValue};
   }
 }
