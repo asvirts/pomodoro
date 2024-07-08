@@ -15,8 +15,7 @@ class SegmentedButtonWidget extends ConsumerStatefulWidget {
 class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    final currentSettings = ref.watch(settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
+    final currentTimer = ref.watch(timerNotifierProvider);
     final currentMode = ref.watch(modeNotifierProvider);
 
     TextStyle font =

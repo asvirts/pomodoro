@@ -4,18 +4,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'modes_provider.g.dart';
 
-@riverpod
-int timer(ref) => ref.watch(timerNotifierProvider);
-
-@riverpod
-int pomodoro(ref) => ref.watch(pomodoroTimerNotifierProvider);
-
-@riverpod
-int short(ref) => ref.watch(shortBreakTimerNotifierProvider);
-
-@riverpod
-int long(ref) => ref.watch(longBreakTimerNotifierProvider);
-
 enum Modes { pomodoro, shortBreak, longBreak }
 
 @riverpod
@@ -26,6 +14,10 @@ class ModeNotifier extends _$ModeNotifier {
   }
 
   void updateMode(Modes newMode) {
+    final pomodoro = ref.watch(pomodoroTimerNotifierProvider);
+    final short = ref.watch(shortBreakTimerNotifierProvider);
+    final long = ref.watch(longBreakTimerNotifierProvider);
+
     if (state != newMode) {
       state = {newMode};
     }
@@ -34,17 +26,17 @@ class ModeNotifier extends _$ModeNotifier {
       case Modes.pomodoro:
         ref
             .watch(timerNotifierProvider.notifier)
-            .updateTimerDuration(pomodoro(ref));
+            .updateTimerDuration(pomodoro.first);
         break;
       case Modes.shortBreak:
         ref
             .watch(timerNotifierProvider.notifier)
-            .updateTimerDuration(short(ref));
+            .updateTimerDuration(short.first);
         break;
       case Modes.longBreak:
         ref
             .watch(timerNotifierProvider.notifier)
-            .updateTimerDuration(long(ref));
+            .updateTimerDuration(long.first);
         break;
     }
   }

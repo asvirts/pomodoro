@@ -25,6 +25,8 @@ class _ProgressIndicatorWidgetState
     final timerText = ref.watch(timerTextNotifierProvider);
     final timerController = ref.watch(timerControllerProvider);
 
+    timerController.first.restart(duration: currentDuration.first * 60);
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -65,6 +67,7 @@ class _ProgressIndicatorWidgetState
                         fontSize: 80,
                         color: Theme.of(context).canvasColor,
                         fontWeight: FontWeight.bold),
+                    onComplete: () => timerController.first.reset(),
                   ),
                 ]),
               ),
