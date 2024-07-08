@@ -53,6 +53,7 @@ class ModeNotifier extends _$ModeNotifier {
     }
 
     ref.watch(timerControllerProvider).first.pause();
-    ref.watch(timerTextNotifierProvider.notifier).swapTimer();
+
+    ref.watch(timerTextNotifierProvider.notifier).resetTimer();
   }
 }

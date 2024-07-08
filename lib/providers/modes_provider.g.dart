@@ -6,7 +6,7 @@ part of 'modes_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$modeNotifierHash() => r'bac41a88d06f8316684a82a7d97ebcfcc695f6f3';
+String _$modeNotifierHash() => r'af14179d817188f797486c1dea4d1aba6eb88b19';
 
 /// See also [ModeNotifier].
 @ProviderFor(ModeNotifier)

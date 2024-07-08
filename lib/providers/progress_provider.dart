@@ -31,6 +31,10 @@ class TimerTextNotifier extends _$TimerTextNotifier {
         break;
     }
   }
+
+  void resetTimer() {
+    state = {"START"};
+  }
 }
 
 @riverpod
