@@ -33,13 +33,13 @@ class Home extends ConsumerWidget {
                     )),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SegmentedButtonWidget(),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ProgressIndicatorWidget(),

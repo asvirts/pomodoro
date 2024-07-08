@@ -13,6 +13,9 @@ class SettingsDialog extends ConsumerWidget {
     final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
     final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
 
+    final currentColor = ref.watch(colorsNotifierProvider);
+    final currentFont = ref.watch(fontNotifierProvider);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -221,12 +224,13 @@ class SettingsDialog extends ConsumerWidget {
                       ),
                       Container(
                         padding: EdgeInsets.all(16),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
                               children: [
                                 Text("FONT"),
+                                Text(currentFont.first.toString()),
                                 FontSelector(),
                               ],
                             ),
@@ -238,12 +242,13 @@ class SettingsDialog extends ConsumerWidget {
                       ),
                       Container(
                         padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
                               children: [
                                 Text("COLOR"),
+                                Text(currentColor.first.toString()),
                                 ColorSelector(),
                               ],
                             )

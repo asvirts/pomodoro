@@ -56,6 +56,7 @@ class _ProgressIndicatorWidgetState
                     isReverse: true,
                     strokeCap: StrokeCap.round,
                     strokeWidth: 8,
+                    textFormat: CountdownTextFormat.MM_SS,
                     fillColor: Theme.of(context).primaryColor,
                     ringColor: Colors.transparent,
                     textStyle: GoogleFonts.kumbhSans(

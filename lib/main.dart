@@ -16,6 +16,9 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentColor = ref.watch(colorsNotifierProvider);
+    final currentFont = ref.watch(fontNotifierProvider);
+
     return MaterialApp(
         theme: ThemeData(
           primaryColor:

@@ -97,7 +97,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
                   ref.watch(selectedColorProvider.notifier).selectColor(1),
                   ref
                       .watch(colorsNotifierProvider.notifier)
-                      .updateColor(PomodoroColors.red)
+                      .updateColor(PomodoroColors.blue)
                 },
             icon: Icon(
               Icons.check,
@@ -120,7 +120,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
             onPressed: () => [
                   ref
                       .watch(colorsNotifierProvider.notifier)
-                      .updateColor(PomodoroColors.red),
+                      .updateColor(PomodoroColors.purple),
                   ref.watch(selectedColorProvider.notifier).selectColor(2)
                 ],
             icon: Icon(
