@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:group_button/group_button.dart';
-import 'package:pomodoro/providers/settings_provider.dart' as settings;
 import 'package:pomodoro/providers/settings_provider.dart';
 
 class FontSelector extends ConsumerStatefulWidget {
@@ -17,12 +16,12 @@ class FontSelector extends ConsumerStatefulWidget {
 class _FontSelectorState extends ConsumerState<FontSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentFont = ref.watch(settings.fontNotifierProvider);
-    final currentSettings = ref.watch(settings.settingsNotifierProvider);
+    final currentFont = ref.watch(fontNotifierProvider);
+    final currentSettings = ref.watch(settingsNotifierProvider);
     final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
     TextStyle font =
-        ref.watch(settings.settingsNotifierProvider.notifier).getCurrentFont();
+        ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
 
     return Row(children: [
       GroupButton(
@@ -43,9 +42,8 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
             borderRadius: BorderRadius.all(Radius.circular(999))),
         isRadio: true,
         buttons: ["Aa", "Aa", "Aa"],
-        onSelected: (value, index, isSelected) => () => ref
-            .watch(settings.fontNotifierProvider.notifier)
-            .updateFonts(index),
+        onSelected: (value, index, isSelected) =>
+            () => ref.watch(fontNotifierProvider.notifier).updateFonts(index),
       )
     ]);
   }
@@ -61,8 +59,8 @@ class ColorSelector extends ConsumerStatefulWidget {
 class _ColorSelectorState extends ConsumerState<ColorSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentSettings = ref.watch(settings.settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settings.settingsUpdateNotifierProvider);
+    final currentSettings = ref.watch(settingsNotifierProvider);
+    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
     final red = ref.watch(colorRedSelectedProvider);
     final blue = ref.watch(colorBlueSelectedProvider);
@@ -78,8 +76,12 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
                   const Color.fromRGBO(248, 112, 112, 1)),
             ),
             isSelected: red.first,
-            onPressed: () =>
-                ref.watch(selectedColorProvider.notifier).selectColor(0),
+            onPressed: () => {
+                  ref.watch(selectedColorProvider.notifier).selectColor(0),
+                  ref
+                      .watch(colorsNotifierProvider.notifier)
+                      .updateColor(PomodoroColors.red)
+                },
             icon: Icon(
               Icons.check,
               color: Colors.transparent,
@@ -99,8 +101,12 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(112, 243, 248, 1)),
             ),
-            onPressed: () =>
-                ref.watch(selectedColorProvider.notifier).selectColor(1),
+            onPressed: () => {
+                  ref.watch(selectedColorProvider.notifier).selectColor(1),
+                  ref
+                      .watch(colorsNotifierProvider.notifier)
+                      .updateColor(PomodoroColors.red)
+                },
             icon: Icon(
               Icons.check,
               color: Colors.transparent,
@@ -119,8 +125,12 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(216, 129, 248, 1)),
             ),
-            onPressed: () =>
-                ref.watch(selectedColorProvider.notifier).selectColor(2),
+            onPressed: () => [
+                  ref
+                      .watch(colorsNotifierProvider.notifier)
+                      .updateColor(PomodoroColors.red),
+                  ref.watch(selectedColorProvider.notifier).selectColor(2)
+                ],
             icon: Icon(
               Icons.check,
               color: Colors.transparent,

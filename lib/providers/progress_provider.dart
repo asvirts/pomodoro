@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,7 +16,7 @@ Modes currentMode(ref) {
 class TimerTextNotifier extends _$TimerTextNotifier {
   @override
   Set<String> build() {
-    return const {"PAUSE"};
+    return const {"START"};
   }
 
   void swapTimer() {
@@ -58,5 +59,14 @@ class TimerNotifier extends _$TimerNotifier {
     if (state != newValue) {
       state = {newValue};
     }
+  }
+}
+
+@riverpod
+class TimerController extends _$TimerController {
+  @override
+  Set<CountDownController> build() {
+    final CountDownController controller = CountDownController();
+    return {controller};
   }
 }

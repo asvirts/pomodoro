@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
@@ -37,9 +36,8 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
               backgroundColor: const Color.fromRGBO(22, 25, 50, 1),
               foregroundColor: const Color.fromRGBO(215, 224, 255, .4),
               selectedForegroundColor: const Color.fromRGBO(30, 33, 63, 1),
-              selectedBackgroundColor: ref
-                  .watch(settingsNotifierProvider.notifier)
-                  .getCurrentColor(),
+              selectedBackgroundColor:
+                  ref.watch(colorsNotifierProvider.notifier).getCurrentColor(),
               side: const BorderSide(width: 0, style: BorderStyle.none),
               textStyle: font,
             ),
@@ -54,11 +52,11 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
                   label: Text('long break', style: font)),
             ],
             selected: currentMode,
-            onSelectionChanged: (Set<Modes> newSelection) => [
+            onSelectionChanged: (Set<Modes> newSelection) => {
               ref
                   .watch(modeNotifierProvider.notifier)
                   .updateMode(newSelection.first)
-            ],
+            },
           ),
         ),
       ],

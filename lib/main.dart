@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
         theme: ThemeData(
           primaryColor:
-              ref.watch(settingsNotifierProvider.notifier).getCurrentColor(),
+              ref.watch(colorsNotifierProvider.notifier).getCurrentColor(),
           canvasColor: const Color.fromRGBO(215, 224, 255, 1),
           textTheme: ref
               .watch(settingsNotifierProvider.notifier)

@@ -7,7 +7,7 @@ part of 'settings_provider.dart';
 // **************************************************************************
 
 String _$settingsUpdateNotifierHash() =>
-    r'5291af3589f69784d2cb3513935469ef89b62057';
+    r'ce2e8c0768b719fcff9b6fa934f8502451d2fef6';
 
 /// See also [SettingsUpdateNotifier].
 @ProviderFor(SettingsUpdateNotifier)
@@ -23,7 +23,7 @@ final settingsUpdateNotifierProvider =
 );
 
 typedef _$SettingsUpdateNotifier = AutoDisposeNotifier<Set<Settings>>;
-String _$settingsNotifierHash() => r'443b15c008a81c6e00da752e1b2f54461da67459';
+String _$settingsNotifierHash() => r'8316807fe70272eb8ce385f3845af82b44695975';
 
 /// See also [SettingsNotifier].
 @ProviderFor(SettingsNotifier)
@@ -54,12 +54,12 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
-String _$colorsNotifierHash() => r'03034d49df0c775b12dc5d7d7b2a4d548b6fa6ba';
+String _$colorsNotifierHash() => r'8d0ded2bbf4c46d61507b86171d9ac9261a504b0';
 
 /// See also [ColorsNotifier].
 @ProviderFor(ColorsNotifier)
 final colorsNotifierProvider =
-    AutoDisposeNotifierProvider<ColorsNotifier, Set<ColorScheme>>.internal(
+    AutoDisposeNotifierProvider<ColorsNotifier, Set<PomodoroColors>>.internal(
   ColorsNotifier.new,
   name: r'colorsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -69,7 +69,7 @@ final colorsNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ColorsNotifier = AutoDisposeNotifier<Set<ColorScheme>>;
+typedef _$ColorsNotifier = AutoDisposeNotifier<Set<PomodoroColors>>;
 String _$selectedColorHash() => r'a825132ce483dfdd697ec47b7b36d14c2089c9e1';
 
 /// See also [SelectedColor].

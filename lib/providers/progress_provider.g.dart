@@ -20,7 +20,7 @@ final currentModeProvider = AutoDisposeProvider<Modes>.internal(
 );
 
 typedef CurrentModeRef = AutoDisposeProviderRef<Modes>;
-String _$timerTextNotifierHash() => r'fe34762527b4ff5a706995dcb6b11f36357fe22b';
+String _$timerTextNotifierHash() => r'75e4ed9eed493ab829a73291d02e8ca83a8f9f51';
 
 /// See also [TimerTextNotifier].
 @ProviderFor(TimerTextNotifier)
@@ -69,5 +69,21 @@ final timerNotifierProvider =
 );
 
 typedef _$TimerNotifier = AutoDisposeNotifier<Set<int>>;
+String _$timerControllerHash() => r'73470153ce529f51bd3e1ddf31b951f3459aae00';
+
+/// See also [TimerController].
+@ProviderFor(TimerController)
+final timerControllerProvider = AutoDisposeNotifierProvider<TimerController,
+    Set<CountDownController>>.internal(
+  TimerController.new,
+  name: r'timerControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$timerControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$TimerController = AutoDisposeNotifier<Set<CountDownController>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

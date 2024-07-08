@@ -11,14 +11,15 @@ class Settings {
   int? time = 25;
   Modes? mode = Modes.pomodoro;
   Fonts? font = Fonts.sans;
-  ColorScheme? colors = ColorScheme.red;
+  PomodoroColors? colors = PomodoroColors.red;
 
   Settings(this.time, this.font, this.mode, this.colors);
 }
 
 @riverpod
 class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
-  Settings settings = Settings(25, Fonts.sans, Modes.pomodoro, ColorScheme.red);
+  Settings settings =
+      Settings(25, Fonts.sans, Modes.pomodoro, PomodoroColors.red);
 
   @override
   Set<Settings> build() {
@@ -64,7 +65,7 @@ class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
 
   // Colors
 
-  void updateColor(ColorScheme newScheme) {
+  void updateColor(PomodoroColors newScheme) {
     final time = ref.watch(timerNotifierProvider);
     final font = ref.watch(fontNotifierProvider);
     final mode = ref.watch(modeNotifierProvider);
@@ -79,7 +80,8 @@ class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
 
 @riverpod
 class SettingsNotifier extends _$SettingsNotifier {
-  Settings settings = Settings(25, Fonts.sans, Modes.pomodoro, ColorScheme.red);
+  Settings settings =
+      Settings(25, Fonts.sans, Modes.pomodoro, PomodoroColors.red);
 
   @override
   Set<Settings> build() {
@@ -143,13 +145,13 @@ class SettingsNotifier extends _$SettingsNotifier {
     Color? newColor;
 
     switch (state.first) {
-      case ColorScheme.red:
+      case PomodoroColors.red:
         newColor = const Color.fromRGBO(248, 112, 112, 1);
         break;
-      case ColorScheme.blue:
+      case PomodoroColors.blue:
         newColor = const Color.fromRGBO(112, 243, 248, 1);
         break;
-      case ColorScheme.purple:
+      case PomodoroColors.purple:
         newColor = const Color.fromRGBO(216, 129, 248, 1);
         break;
       default:
@@ -194,19 +196,39 @@ class FontNotifier extends _$FontNotifier {
   }
 }
 
-enum ColorScheme { red, blue, purple }
+enum PomodoroColors { red, blue, purple }
 
 @riverpod
 class ColorsNotifier extends _$ColorsNotifier {
   @override
-  Set<ColorScheme> build() {
-    return const {ColorScheme.red};
+  Set<PomodoroColors> build() {
+    return const {PomodoroColors.red};
   }
 
-  void updateColor(ColorScheme newScheme) {
+  void updateColor(PomodoroColors newScheme) {
     if (state != newScheme) {
       state = {newScheme};
     }
+  }
+
+  Color getCurrentColor() {
+    Color? newColor;
+
+    switch (state.first) {
+      case PomodoroColors.red:
+        newColor = Color.fromRGBO(248, 112, 112, 1);
+        break;
+      case PomodoroColors.blue:
+        newColor = Color.fromRGBO(112, 243, 248, 1);
+        break;
+      case PomodoroColors.purple:
+        newColor = Color.fromRGBO(216, 129, 248, 1);
+        break;
+      default:
+        newColor = Color.fromRGBO(248, 112, 112, 1);
+    }
+
+    return newColor;
   }
 }
 

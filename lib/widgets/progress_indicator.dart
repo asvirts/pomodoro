@@ -2,6 +2,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 
@@ -22,8 +23,7 @@ class _ProgressIndicatorWidgetState
     final currentDuration = ref.watch(timerNotifierProvider);
     final timerStarted = ref.watch(timerStartedNotifierProvider);
     final timerText = ref.watch(timerTextNotifierProvider);
-
-    final CountDownController controller = CountDownController();
+    final timerController = ref.watch(timerControllerProvider);
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -50,7 +50,8 @@ class _ProgressIndicatorWidgetState
               Center(
                 child: Column(children: [
                   CircularCountDownTimer(
-                    controller: controller,
+                    controller: timerController.first,
+                    autoStart: false,
                     width: 248,
                     height: 248,
                     duration: currentDuration.first * 60,
@@ -75,10 +76,12 @@ class _ProgressIndicatorWidgetState
                       backgroundColor: WidgetStateColor.transparent,
                     ),
                     onPressed: () => {
-                          if (controller.isPaused)
-                            {controller.resume()}
+                          if (!timerController.first.isStarted)
+                            {timerController.first.start()}
+                          else if (timerController.first.isPaused)
+                            {timerController.first.resume()}
                           else
-                            {controller.pause()},
+                            {timerController.first.pause()},
                           ref
                               .watch(timerTextNotifierProvider.notifier)
                               .swapTimer()
