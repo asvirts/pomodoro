@@ -2,7 +2,6 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/modes_provider.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 
@@ -18,14 +17,10 @@ class _ProgressIndicatorWidgetState
     extends ConsumerState<ProgressIndicatorWidget> {
   @override
   Widget build(BuildContext context) {
-    final currentSettings = ref.watch(settingsNotifierProvider);
-    final currentColor = ref.watch(colorsNotifierProvider);
     final currentDuration = ref.watch(timerNotifierProvider);
     final timerStarted = ref.watch(timerStartedNotifierProvider);
     final timerText = ref.watch(timerTextNotifierProvider);
     final timerController = ref.watch(timerControllerProvider);
-
-    timerController.first.restart(duration: currentDuration.first * 60);
 
     return Container(
       padding: const EdgeInsets.all(24),

@@ -17,11 +17,6 @@ class _FontSelectorState extends ConsumerState<FontSelector> {
   @override
   Widget build(BuildContext context) {
     final currentFont = ref.watch(fontNotifierProvider);
-    final currentSettings = ref.watch(settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
-
-    TextStyle font =
-        ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
 
     return Row(children: [
       GroupButton(
@@ -59,9 +54,6 @@ class ColorSelector extends ConsumerStatefulWidget {
 class _ColorSelectorState extends ConsumerState<ColorSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentSettings = ref.watch(settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
-
     final red = ref.watch(colorRedSelectedProvider);
     final blue = ref.watch(colorBlueSelectedProvider);
     final purple = ref.watch(colorPurpleSelectedProvider);

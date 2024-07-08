@@ -11,11 +11,8 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentSettings = ref.watch(settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
-
     TextStyle textStyle =
-        ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
+        ref.watch(fontNotifierProvider.notifier).getCurrentFont();
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(30, 33, 63, 1),

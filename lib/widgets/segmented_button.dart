@@ -18,8 +18,7 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
     final currentTimer = ref.watch(timerNotifierProvider);
     final currentMode = ref.watch(modeNotifierProvider);
 
-    TextStyle font =
-        ref.watch(settingsNotifierProvider.notifier).getCurrentFont();
+    TextStyle font = ref.watch(fontNotifierProvider.notifier).getCurrentFont();
 
     return Row(
       children: [
@@ -54,7 +53,7 @@ class _SegmentedButtonWidgetState extends ConsumerState<SegmentedButtonWidget> {
             onSelectionChanged: (Set<Modes> newSelection) => {
               ref
                   .watch(modeNotifierProvider.notifier)
-                  .updateMode(newSelection.first)
+                  .updateMode(newSelection.first),
             },
           ),
         ),

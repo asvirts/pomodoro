@@ -7,102 +7,21 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_provider.g.dart';
 
-class Settings {
-  int? time = 25;
-  Modes? mode = Modes.pomodoro;
-  Fonts? font = Fonts.sans;
-  PomodoroColors? colors = PomodoroColors.red;
+// Fonts
 
-  Settings(this.time, this.font, this.mode, this.colors);
-}
+enum Fonts { sans, serif, mono }
 
 @riverpod
-class SettingsUpdateNotifier extends _$SettingsUpdateNotifier {
-  Settings settings =
-      Settings(25, Fonts.sans, Modes.pomodoro, PomodoroColors.red);
-
+class FontNotifier extends _$FontNotifier {
   @override
-  Set<Settings> build() {
-    final time = ref.watch(timerNotifierProvider);
-    final font = ref.watch(fontNotifierProvider);
-    final mode = ref.watch(modeNotifierProvider);
-    final color = ref.watch(colorsNotifierProvider);
-
-    Settings stg = Settings(time.first, font.first, mode.first, color.first);
-
-    return {settings};
+  Set<Fonts> build() {
+    return {Fonts.sans};
   }
-
-  // Fonts
-
-  void updateFonts(int index) {
-    final time = ref.watch(timerNotifierProvider);
-    final mode = ref.watch(modeNotifierProvider);
-    final colors = ref.watch(colorsNotifierProvider);
-
-    Fonts? newFont;
-
-    switch (index) {
-      case 0:
-        newFont = Fonts.sans;
-        break;
-      case 1:
-        newFont = Fonts.serif;
-        break;
-      case 2:
-        newFont = Fonts.mono;
-        break;
-      default:
-        newFont = Fonts.sans;
-    }
-
-    Settings stg = Settings(time.first, newFont, mode.first, colors.first);
-
-    if (stg.font != newFont) {
-      state = {stg};
-    }
-  }
-
-  // Colors
-
-  void updateColor(PomodoroColors newScheme) {
-    final time = ref.watch(timerNotifierProvider);
-    final font = ref.watch(fontNotifierProvider);
-    final mode = ref.watch(modeNotifierProvider);
-
-    Settings stg = Settings(time.first, Fonts.sans, mode.first, newScheme);
-
-    if (stg.colors != newScheme) {
-      state = {stg};
-    }
-  }
-}
-
-@riverpod
-class SettingsNotifier extends _$SettingsNotifier {
-  Settings settings =
-      Settings(25, Fonts.sans, Modes.pomodoro, PomodoroColors.red);
-
-  @override
-  Set<Settings> build() {
-    return {settings};
-  }
-
-  void updateSettings() {
-    final fetch = ref.watch(settingsUpdateNotifierProvider);
-    Settings stg = Settings(fetch.first.time, fetch.first.font,
-        fetch.first.mode, fetch.first.colors);
-
-    settings = stg;
-    state = {stg};
-  }
-
-  // Fonts
 
   TextStyle getCurrentFont() {
-    TextStyle? newFont;
+    TextStyle newFont;
 
-    switch (state.first.font) {
+    switch (state.first) {
       case Fonts.sans:
         newFont = GoogleFonts.kumbhSans();
         break;
@@ -114,63 +33,31 @@ class SettingsNotifier extends _$SettingsNotifier {
         break;
       default:
         newFont = GoogleFonts.kumbhSans();
+        break;
     }
 
     return newFont;
   }
 
   TextTheme getCurrentFontTheme() {
-    TextTheme? newTheme;
+    TextTheme newFont;
 
     switch (state.first) {
       case Fonts.sans:
-        newTheme = GoogleFonts.kumbhSansTextTheme();
+        newFont = GoogleFonts.kumbhSansTextTheme();
         break;
       case Fonts.serif:
-        newTheme = GoogleFonts.robotoSlabTextTheme();
+        newFont = GoogleFonts.robotoSlabTextTheme();
         break;
       case Fonts.mono:
-        newTheme = GoogleFonts.spaceMonoTextTheme();
+        newFont = GoogleFonts.spaceMonoTextTheme();
         break;
       default:
-        newTheme = GoogleFonts.kumbhSansTextTheme();
+        newFont = GoogleFonts.kumbhSansTextTheme();
+        break;
     }
 
-    return newTheme;
-  }
-
-  // Colors
-
-  Color getCurrentColor() {
-    Color? newColor;
-
-    switch (state.first) {
-      case PomodoroColors.red:
-        newColor = const Color.fromRGBO(248, 112, 112, 1);
-        break;
-      case PomodoroColors.blue:
-        newColor = const Color.fromRGBO(112, 243, 248, 1);
-        break;
-      case PomodoroColors.purple:
-        newColor = const Color.fromRGBO(216, 129, 248, 1);
-        break;
-      default:
-        newColor = const Color.fromRGBO(248, 112, 112, 1);
-    }
-
-    return newColor;
-  }
-}
-
-// Fonts
-
-enum Fonts { sans, serif, mono }
-
-@riverpod
-class FontNotifier extends _$FontNotifier {
-  @override
-  Set<Fonts> build() {
-    return {Fonts.sans};
+    return newFont;
   }
 
   void updateFonts(int index) {

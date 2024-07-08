@@ -12,8 +12,6 @@ class SettingsDialog extends ConsumerWidget {
     final currentPomodoroTime = ref.watch(pomodoroTimerNotifierProvider);
     final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
     final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
-    final settingsProvider = ref.watch(settingsNotifierProvider);
-    final settingsToUpdate = ref.watch(settingsUpdateNotifierProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -259,18 +257,11 @@ class SettingsDialog extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 FilledButton(
-                                  onPressed: () => {
-                                    Navigator.pop(context),
-                                    ref
-                                        .watch(
-                                            settingsNotifierProvider.notifier)
-                                        .updateSettings(),
-                                  },
+                                  onPressed: () => Navigator.pop(context),
                                   style: ButtonStyle(
                                     elevation: WidgetStatePropertyAll(99),
                                     backgroundColor: WidgetStateProperty.all(ref
-                                        .watch(
-                                            settingsNotifierProvider.notifier)
+                                        .watch(colorsNotifierProvider.notifier)
                                         .getCurrentColor()),
                                   ),
                                   child: Text("Apply"),

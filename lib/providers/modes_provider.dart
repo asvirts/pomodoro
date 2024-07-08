@@ -27,17 +27,32 @@ class ModeNotifier extends _$ModeNotifier {
         ref
             .watch(timerNotifierProvider.notifier)
             .updateTimerDuration(pomodoro.first);
+        ref
+            .watch(timerControllerProvider)
+            .first
+            .restart(duration: pomodoro.first * 60);
         break;
       case Modes.shortBreak:
         ref
             .watch(timerNotifierProvider.notifier)
             .updateTimerDuration(short.first);
+        ref
+            .watch(timerControllerProvider)
+            .first
+            .restart(duration: short.first * 60);
         break;
       case Modes.longBreak:
         ref
             .watch(timerNotifierProvider.notifier)
             .updateTimerDuration(long.first);
+        ref
+            .watch(timerControllerProvider)
+            .first
+            .restart(duration: long.first * 60);
         break;
     }
+
+    ref.watch(timerControllerProvider).first.pause();
+    ref.watch(timerTextNotifierProvider.notifier).swapTimer();
   }
 }

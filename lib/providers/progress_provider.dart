@@ -23,9 +23,11 @@ class TimerTextNotifier extends _$TimerTextNotifier {
     switch (state.first) {
       case "START":
         state = {"PAUSE"};
+        ref.watch(timerControllerProvider).first.start();
         break;
       case "PAUSE":
         state = {"START"};
+        ref.watch(timerControllerProvider).first.pause();
         break;
     }
   }
