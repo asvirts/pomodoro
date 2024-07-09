@@ -13,7 +13,7 @@ void main() {
     ));
     await loadAppFonts();
 
-    // Check on tests
+    // Testing writing tests in Flutter
     expect(find.text('pomodoro'), findsExactly(2));
     expect(find.text('santa'), findsNothing);
   });
