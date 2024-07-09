@@ -24,12 +24,14 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
 
     return Expanded(
       child: Container(
+        width: 320,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Theme.of(context).primaryColorDark,
             borderRadius: BorderRadius.all(Radius.circular(99))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
                 statesController: controller,

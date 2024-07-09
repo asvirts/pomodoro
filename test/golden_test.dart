@@ -6,6 +6,7 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
   testGoldens('Golden test - Home screen', (tester) async {
+    await loadAppFonts();
     final builder = DeviceBuilder()
       ..overrideDevicesForAllScenarios(devices: [
         Device.phone,
