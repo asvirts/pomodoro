@@ -6,6 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pomodoro/main.dart';
@@ -14,9 +15,11 @@ import 'package:pomodoro/screens/home.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
-  testGoldens('Test tests', (WidgetTester tester) async {
+  testWidgets('Test tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const ProviderScope(
+      child: MyApp(),
+    ));
     await loadAppFonts();
 
     // Check on tests
