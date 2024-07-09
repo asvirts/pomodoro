@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/progress_indicator.dart';
-import 'package:pomodoro/widgets/segmented_button.dart';
-import 'package:pomodoro/widgets/settings.dart';
+import 'package:pomodoro/widgets/mode_selector.dart';
+import 'package:pomodoro/screens/settings.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
@@ -35,7 +35,7 @@ class Home extends ConsumerWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SegmentedButtonWidget(),
+                ModeSelector(),
               ],
             ),
             const Row(
