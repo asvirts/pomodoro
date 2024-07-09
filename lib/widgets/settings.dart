@@ -85,7 +85,8 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -106,7 +107,8 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                   pomodoroTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: const Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_up)),
                                       IconButton(
                                           visualDensity: VisualDensity.compact,
                                           onPressed: () => ref
@@ -114,8 +116,8 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                   pomodoroTimerNotifierProvider
                                                       .notifier)
                                               .decrementTimer(),
-                                          icon:
-                                              const Icon(Icons.keyboard_arrow_down)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -137,7 +139,8 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -157,15 +160,16 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                   shortBreakTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: const Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_up)),
                                       IconButton(
                                           onPressed: () => ref
                                               .watch(
                                                   shortBreakTimerNotifierProvider
                                                       .notifier)
                                               .decrementTimer(),
-                                          icon:
-                                              const Icon(Icons.keyboard_arrow_down)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -187,7 +191,8 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -207,15 +212,16 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                   longBreakTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: const Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_up)),
                                       IconButton(
                                           onPressed: () => ref
                                               .watch(
                                                   longBreakTimerNotifierProvider
                                                       .notifier)
                                               .decrementTimer(),
-                                          icon:
-                                              const Icon(Icons.keyboard_arrow_down)),
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -235,7 +241,6 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                             Column(
                               children: [
                                 const Text("FONT"),
-                                Text(currentFont.first.toString()),
                                 const FontSelector(),
                               ],
                             ),
@@ -246,14 +251,14 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                         thickness: 1,
                       ),
                       Container(
-                        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                        padding:
+                            const EdgeInsets.only(top: 16, left: 16, right: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
                               children: [
                                 const Text("COLOR"),
-                                Text(currentColor.first.toString()),
                                 const ColorSelector(),
                               ],
                             )

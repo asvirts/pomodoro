@@ -37,7 +37,7 @@ final selectedFontIndexProvider =
 );
 
 typedef _$SelectedFontIndex = AutoDisposeNotifier<Set<int>>;
-String _$colorsNotifierHash() => r'8d0ded2bbf4c46d61507b86171d9ac9261a504b0';
+String _$colorsNotifierHash() => r'126b76fcb28261d92e1d6bd7f575a0b555cf56b9';
 
 /// See also [ColorsNotifier].
 @ProviderFor(ColorsNotifier)
