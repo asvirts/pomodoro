@@ -14,13 +14,7 @@ class SettingsDialog extends ConsumerStatefulWidget {
 class _SettingsDialogState extends ConsumerState<SettingsDialog> {
   @override
   Widget build(BuildContext context) {
-    final currentPomodoroTime = ref.watch(pomodoroTimerNotifierProvider);
-    final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
-    final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
-
-    final currentColor = ref.watch(colorsNotifierProvider);
-    final currentFont = ref.watch(fontNotifierProvider);
-
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
