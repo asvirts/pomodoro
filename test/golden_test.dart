@@ -5,7 +5,7 @@ import 'package:pomodoro/main.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
-  testGoldens('Golden test - Home screen', (tester) async 
+  testGoldens('Golden test - Home screen', (tester) async {
     final builder = DeviceBuilder()
       ..overrideDevicesForAllScenarios(devices: [
         Device.phone,
