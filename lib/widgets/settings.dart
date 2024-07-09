@@ -108,16 +108,10 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                       .notifier)
                                               .incrementTimer(),
                                           icon: const Icon(
-                                              Icons.keyboard_arrow_up)),
-                                      IconButton(
-                                          visualDensity: VisualDensity.compact,
-                                          onPressed: () => ref
-                                              .watch(
-                                                  pomodoroTimerNotifierProvider
-                                                      .notifier)
-                                              .decrementTimer(),
-                                          icon: const Icon(
-                                              Icons.keyboard_arrow_down)),
+                                            Icons.unfold_more,
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, .25),
+                                          )),
                                     ],
                                   ),
                                 ],
@@ -161,15 +155,10 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                       .notifier)
                                               .incrementTimer(),
                                           icon: const Icon(
-                                              Icons.keyboard_arrow_up)),
-                                      IconButton(
-                                          onPressed: () => ref
-                                              .watch(
-                                                  shortBreakTimerNotifierProvider
-                                                      .notifier)
-                                              .decrementTimer(),
-                                          icon: const Icon(
-                                              Icons.keyboard_arrow_down)),
+                                            Icons.unfold_more,
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, .25),
+                                          )),
                                     ],
                                   ),
                                 ],
@@ -213,15 +202,10 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                                       .notifier)
                                               .incrementTimer(),
                                           icon: const Icon(
-                                              Icons.keyboard_arrow_up)),
-                                      IconButton(
-                                          onPressed: () => ref
-                                              .watch(
-                                                  longBreakTimerNotifierProvider
-                                                      .notifier)
-                                              .decrementTimer(),
-                                          icon: const Icon(
-                                              Icons.keyboard_arrow_down)),
+                                            Icons.unfold_more,
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, .25),
+                                          )),
                                     ],
                                   ),
                                 ],
@@ -240,7 +224,17 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                           children: [
                             Column(
                               children: [
-                                const Text("FONT"),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 18),
+                                  child: Text(
+                                    "FONT",
+                                    style: GoogleFonts.kumbhSans(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 4.23,
+                                    ),
+                                  ),
+                                ),
                                 const FontSelector(),
                               ],
                             ),
@@ -258,7 +252,17 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                           children: [
                             Column(
                               children: [
-                                const Text("COLOR"),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 18),
+                                  child: Text(
+                                    "COLOR",
+                                    style: GoogleFonts.kumbhSans(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 4.23,
+                                    ),
+                                  ),
+                                ),
                                 const ColorSelector(),
                               ],
                             )
