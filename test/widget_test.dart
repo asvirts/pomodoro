@@ -23,6 +23,7 @@ void main() {
     await loadAppFonts();
 
     // Check on tests
+    expect(find.text('pomodoro'), findsExactly(2));
     expect(find.text('santa'), findsNothing);
   });
 }
