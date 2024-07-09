@@ -15,7 +15,7 @@ import 'package:pomodoro/screens/home.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
-  testWidgets('Test tests', (WidgetTester tester) async {
+  testGoldens('Test tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const ProviderScope(
       child: MyApp(),
