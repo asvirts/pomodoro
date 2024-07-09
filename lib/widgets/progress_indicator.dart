@@ -17,7 +17,6 @@ class _ProgressIndicatorWidgetState
   @override
   Widget build(BuildContext context) {
     final currentDuration = ref.watch(timerNotifierProvider);
-    final timerStarted = ref.watch(timerStartedNotifierProvider);
     final timerText = ref.watch(timerTextNotifierProvider);
     final timerController = ref.watch(timerControllerProvider);
 
