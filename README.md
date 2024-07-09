@@ -5,7 +5,7 @@
 Technical Requirements:
 
 - [ ] Tests Unit, and Golden.
-- [ ] Riverpod for state managment
+- [x] Riverpod for state managment
 
 Users should be able to:
 
