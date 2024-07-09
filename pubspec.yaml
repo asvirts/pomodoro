@@ -31,4 +31,17 @@ dev_dependencies:
   riverpod_lint: ^2.3.10
 
 flutter:
+  fonts:
+    - family: Kumbh Sans
+      fonts:
+        - asset: assets\fonts\KumbhSans-Regular.ttf
+        - asset: assets\fonts\KumbhSans-Bold.ttf
+    - family: Roboto Slab
+      fonts:
+        - asset: assets\fonts\RobotoSlab-Regular.ttf
+        - asset: assets\fonts\RobotoSlab-Bold.ttf
+    - family: Space Mono
+      fonts:
+        - asset: assets\fonts\SpaceMono-Regular.ttf
+        - asset: assets\fonts\SpaceMono-Bold.ttf
   uses-material-design: true
