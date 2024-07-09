@@ -19,6 +19,15 @@ class _ProgressIndicatorWidgetState
     final currentDuration = ref.watch(timerNotifierProvider);
     final timerText = ref.watch(timerTextNotifierProvider);
     final timerController = ref.watch(timerControllerProvider);
+    final initialRender = ref.watch(timerStartedNotifierProvider.notifier);
+    final rendered = ref.watch(timerStartedNotifierProvider);
+
+    if (rendered.first) {
+      WidgetsBinding.instance
+          .addPostFrameCallback((timeStamp) => initialRender.swapTimer());
+      WidgetsBinding.instance
+          .addPostFrameCallback((timeStamp) => timerController.first.pause());
+    }
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -46,7 +55,7 @@ class _ProgressIndicatorWidgetState
                 child: Column(children: [
                   CircularCountDownTimer(
                     controller: timerController.first,
-                    autoStart: false,
+                    autoStart: rendered.first,
                     width: 248,
                     height: 248,
                     duration: currentDuration.first * 60,

@@ -41,7 +41,7 @@ class TimerTextNotifier extends _$TimerTextNotifier {
 class TimerStartedNotifier extends _$TimerStartedNotifier {
   @override
   Set<bool> build() {
-    return const {false};
+    return const {true};
   }
 
   void swapTimer() {

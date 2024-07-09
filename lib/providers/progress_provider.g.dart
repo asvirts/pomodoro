@@ -37,7 +37,7 @@ final timerTextNotifierProvider =
 
 typedef _$TimerTextNotifier = AutoDisposeNotifier<Set<String>>;
 String _$timerStartedNotifierHash() =>
-    r'4eb782d0a902170309061d2b7f980e2fa16eb8b8';
+    r'6797603e22acb9b6539bd32318e2476719412790';
 
 /// See also [TimerStartedNotifier].
 @ProviderFor(TimerStartedNotifier)

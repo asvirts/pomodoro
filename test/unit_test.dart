@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pomodoro/main.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:pomodoro/widgets/progress_indicator.dart';
 
 void main() {
   testWidgets('Countdown initial state is not started',
@@ -16,5 +17,7 @@ void main() {
 
     expect(find.text('START'), findsExactly(1));
     expect(find.text('PAUSE'), findsNothing);
+
+    expect(find.byWidget(const ProgressIndicatorWidget()), ref.watch());
   });
 }
