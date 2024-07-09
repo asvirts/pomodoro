@@ -13,7 +13,6 @@ class FontSelector extends ConsumerStatefulWidget {
 class _FontSelectorState extends ConsumerState<FontSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentFont = ref.watch(fontNotifierProvider);
     final currentFontIndex = ref.watch(selectedFontIndexProvider);
 
     GroupButtonController controller = GroupButtonController();
