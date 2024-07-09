@@ -1,18 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pomodoro/main.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
-  testGoldens('Test tests', (WidgetTester tester) async {
+  testWidgets('Countdown initial state is not started',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const ProviderScope(
       child: MyApp(),
     ));
     await loadAppFonts();
 
-    // Testing writing tests in Flutter
-    expect(find.text('pomodoro'), findsExactly(2));
-    expect(find.text('santa'), findsNothing);
+    expect(find.text('START'), findsExactly(1));
+    expect(find.text('PAUSE'), findsNothing);
   });
 }
