@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
-import 'package:pomodoro/providers/settings_provider.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
@@ -69,11 +68,13 @@ class _ProgressIndicatorWidgetState
               ),
               Positioned(
                 top: 165,
-                left: 75,
+                left: 45,
                 child: ElevatedButton(
                     style: const ButtonStyle(
-                      backgroundColor: WidgetStateColor.transparent,
-                    ),
+                        shadowColor: WidgetStateColor.transparent,
+                        backgroundColor: WidgetStateColor.transparent,
+                        foregroundColor: WidgetStatePropertyAll(
+                            Color.fromRGBO(215, 224, 255, 1))),
                     onPressed: () => {
                           if (!timerController.first.isStarted)
                             {timerController.first.start()}
@@ -85,7 +86,11 @@ class _ProgressIndicatorWidgetState
                               .watch(timerTextNotifierProvider.notifier)
                               .swapTimer()
                         },
-                    child: Text(timerText.first)),
+                    child: Text(timerText.first,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 13.13,
+                            fontWeight: FontWeight.bold))),
               )
             ],
           ),

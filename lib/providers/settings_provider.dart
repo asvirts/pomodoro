@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodoro/providers/modes_provider.dart';
-import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_provider.g.dart';
 
-// Fonts
+//   Fonts
 
 enum Fonts { sans, serif, mono }
 
@@ -83,6 +80,20 @@ class FontNotifier extends _$FontNotifier {
   }
 }
 
+@riverpod
+class SelectedFontIndex extends _$SelectedFontIndex {
+  @override
+  Set<int> build() {
+    return {0};
+  }
+
+  void updateSelectedFontIndex(int i) {
+    state = {i};
+  }
+}
+
+//   Colors
+
 enum PomodoroColors { red, blue, purple }
 
 @riverpod
@@ -103,16 +114,16 @@ class ColorsNotifier extends _$ColorsNotifier {
 
     switch (state.first) {
       case PomodoroColors.red:
-        newColor = Color.fromRGBO(248, 112, 112, 1);
+        newColor = const Color.fromRGBO(248, 112, 112, 1);
         break;
       case PomodoroColors.blue:
-        newColor = Color.fromRGBO(112, 243, 248, 1);
+        newColor = const Color.fromRGBO(112, 243, 248, 1);
         break;
       case PomodoroColors.purple:
-        newColor = Color.fromRGBO(216, 129, 248, 1);
+        newColor = const Color.fromRGBO(216, 129, 248, 1);
         break;
       default:
-        newColor = Color.fromRGBO(248, 112, 112, 1);
+        newColor = const Color.fromRGBO(248, 112, 112, 1);
     }
 
     return newColor;
@@ -144,6 +155,10 @@ class SelectedColor extends _$SelectedColor {
         ref.watch(colorPurpleSelectedProvider.notifier).select();
         break;
     }
+  }
+
+  void updateSelectedColor(int i) {
+    state = {i};
   }
 }
 
@@ -195,7 +210,7 @@ class ColorPurpleSelected extends _$ColorRedSelected {
   }
 }
 
-// Timers
+//   Timers
 
 @riverpod
 class PomodoroTimerNotifier extends _$PomodoroTimerNotifier {

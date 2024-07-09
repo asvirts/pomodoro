@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/progress_indicator.dart';
 import 'package:pomodoro/widgets/segmented_button.dart';
@@ -33,19 +32,19 @@ class Home extends ConsumerWidget {
                     )),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SegmentedButtonWidget(),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ProgressIndicatorWidget(),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SettingsDialog(),

@@ -21,6 +21,22 @@ final fontNotifierProvider =
 );
 
 typedef _$FontNotifier = AutoDisposeNotifier<Set<Fonts>>;
+String _$selectedFontIndexHash() => r'4c40cd1a546610aaf8fd7fd040e53e99295c5383';
+
+/// See also [SelectedFontIndex].
+@ProviderFor(SelectedFontIndex)
+final selectedFontIndexProvider =
+    AutoDisposeNotifierProvider<SelectedFontIndex, Set<int>>.internal(
+  SelectedFontIndex.new,
+  name: r'selectedFontIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$selectedFontIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SelectedFontIndex = AutoDisposeNotifier<Set<int>>;
 String _$colorsNotifierHash() => r'8d0ded2bbf4c46d61507b86171d9ac9261a504b0';
 
 /// See also [ColorsNotifier].
@@ -37,7 +53,7 @@ final colorsNotifierProvider =
 );
 
 typedef _$ColorsNotifier = AutoDisposeNotifier<Set<PomodoroColors>>;
-String _$selectedColorHash() => r'a825132ce483dfdd697ec47b7b36d14c2089c9e1';
+String _$selectedColorHash() => r'9151b791467f877c853d124dae1acf6b66845e01';
 
 /// See also [SelectedColor].
 @ProviderFor(SelectedColor)

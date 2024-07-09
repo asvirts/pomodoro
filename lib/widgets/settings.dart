@@ -4,11 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/widgets/radio_buttons.dart';
 
-class SettingsDialog extends ConsumerWidget {
+class SettingsDialog extends ConsumerStatefulWidget {
   const SettingsDialog({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsDialogState();
+}
+
+class _SettingsDialogState extends ConsumerState<SettingsDialog> {
+  @override
+  Widget build(BuildContext context) {
     final currentPomodoroTime = ref.watch(pomodoroTimerNotifierProvider);
     final currentShortBreakTime = ref.watch(shortBreakTimerNotifierProvider);
     final currentLongBreakTime = ref.watch(longBreakTimerNotifierProvider);
@@ -49,11 +54,11 @@ class SettingsDialog extends ConsumerWidget {
                               ),
                             ]),
                       ),
-                      Divider(
+                      const Divider(
                         thickness: 1,
                       ),
                       Container(
-                        margin: EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(16),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -68,19 +73,19 @@ class SettingsDialog extends ConsumerWidget {
                             ]),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 8),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("pomodoro"),
+                            const Text("pomodoro"),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color.fromRGBO(239, 241, 250, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -101,7 +106,7 @@ class SettingsDialog extends ConsumerWidget {
                                                   pomodoroTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(Icons.keyboard_arrow_up)),
                                       IconButton(
                                           visualDensity: VisualDensity.compact,
                                           onPressed: () => ref
@@ -110,7 +115,7 @@ class SettingsDialog extends ConsumerWidget {
                                                       .notifier)
                                               .decrementTimer(),
                                           icon:
-                                              Icon(Icons.keyboard_arrow_down)),
+                                              const Icon(Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -120,19 +125,19 @@ class SettingsDialog extends ConsumerWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 8),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("short break"),
+                            const Text("short break"),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color.fromRGBO(239, 241, 250, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -152,7 +157,7 @@ class SettingsDialog extends ConsumerWidget {
                                                   shortBreakTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(Icons.keyboard_arrow_up)),
                                       IconButton(
                                           onPressed: () => ref
                                               .watch(
@@ -160,7 +165,7 @@ class SettingsDialog extends ConsumerWidget {
                                                       .notifier)
                                               .decrementTimer(),
                                           icon:
-                                              Icon(Icons.keyboard_arrow_down)),
+                                              const Icon(Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -170,19 +175,19 @@ class SettingsDialog extends ConsumerWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 8),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("long break"),
+                            const Text("long break"),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color.fromRGBO(239, 241, 250, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
                               height: 50,
                               width: 140,
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -202,7 +207,7 @@ class SettingsDialog extends ConsumerWidget {
                                                   longBreakTimerNotifierProvider
                                                       .notifier)
                                               .incrementTimer(),
-                                          icon: Icon(Icons.keyboard_arrow_up)),
+                                          icon: const Icon(Icons.keyboard_arrow_up)),
                                       IconButton(
                                           onPressed: () => ref
                                               .watch(
@@ -210,7 +215,7 @@ class SettingsDialog extends ConsumerWidget {
                                                       .notifier)
                                               .decrementTimer(),
                                           icon:
-                                              Icon(Icons.keyboard_arrow_down)),
+                                              const Icon(Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ],
@@ -219,44 +224,44 @@ class SettingsDialog extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         thickness: 1,
                       ),
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
                               children: [
-                                Text("FONT"),
+                                const Text("FONT"),
                                 Text(currentFont.first.toString()),
-                                FontSelector(),
+                                const FontSelector(),
                               ],
                             ),
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         thickness: 1,
                       ),
                       Container(
-                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+                        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
                               children: [
-                                Text("COLOR"),
+                                const Text("COLOR"),
                                 Text(currentColor.first.toString()),
-                                ColorSelector(),
+                                const ColorSelector(),
                               ],
                             )
                           ],
                         ),
                       ),
                       FractionalTranslation(
-                        translation: Offset(0, .8),
+                        translation: const Offset(0, .8),
                         child: Container(
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -264,12 +269,12 @@ class SettingsDialog extends ConsumerWidget {
                                 FilledButton(
                                   onPressed: () => Navigator.pop(context),
                                   style: ButtonStyle(
-                                    elevation: WidgetStatePropertyAll(99),
+                                    elevation: const WidgetStatePropertyAll(99),
                                     backgroundColor: WidgetStateProperty.all(ref
                                         .watch(colorsNotifierProvider.notifier)
                                         .getCurrentColor()),
                                   ),
-                                  child: Text("Apply"),
+                                  child: const Text("Apply"),
                                 )
                               ]),
                         ),

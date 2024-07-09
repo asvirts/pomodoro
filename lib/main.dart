@@ -27,6 +27,6 @@ class MyApp extends ConsumerWidget {
           textTheme:
               ref.watch(fontNotifierProvider.notifier).getCurrentFontTheme(),
         ),
-        home: Home());
+        home: const Home());
   }
 }
