@@ -72,7 +72,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(248, 112, 112, 1)),
             ),
-            isSelected: red.first,
+            isSelected: red.first ? true : false,
             onPressed: () {
               ref.watch(selectedColorProvider.notifier).selectColor(0);
               ref.watch(selectedColorProvider.notifier).updateSelectedColor(0);
@@ -94,7 +94,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: IconButton(
-            isSelected: blue.first,
+            isSelected: blue.first ? true : false,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(112, 243, 248, 1)),
@@ -119,7 +119,7 @@ class _ColorSelectorState extends ConsumerState<ColorSelector> {
         height: 40,
         width: 40,
         child: IconButton(
-            isSelected: purple.first,
+            isSelected: purple.first ? true : false,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   const Color.fromRGBO(216, 129, 248, 1)),

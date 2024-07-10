@@ -49,6 +49,7 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
                 width: 59,
                 child: Text(
                   "pomodoro",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: font.fontFamily,
                       fontSize: 12,
@@ -76,6 +77,7 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
               width: 65,
               child: Text(
                 "short break",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: font.fontFamily,
                     fontSize: 12,
@@ -104,6 +106,7 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
                 width: 61,
                 child: Text(
                   "long break",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: font.fontFamily,
                       fontSize: 12,

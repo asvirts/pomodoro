@@ -1,5 +1,7 @@
+import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_provider.g.dart';
@@ -224,9 +226,13 @@ class PomodoroTimerNotifier extends _$PomodoroTimerNotifier {
   }
 
   void updateTimerDuration(int newValue) {
+    int previous = state.first;
+
     if (state != newValue) {
       state = {newValue};
     }
+
+    ref.watch(timerNotifierProvider.notifier).updateTimerDuration(newValue);
   }
 
   void incrementTimer() {

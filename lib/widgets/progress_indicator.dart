@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/progress_provider.dart';
+import 'package:pomodoro/providers/settings_provider.dart';
 
 class ProgressIndicatorWidget extends ConsumerStatefulWidget {
   const ProgressIndicatorWidget({super.key});
@@ -21,6 +22,7 @@ class _ProgressIndicatorWidgetState
     final timerController = ref.watch(timerControllerProvider);
     final initialRender = ref.watch(timerStartedNotifierProvider.notifier);
     final rendered = ref.watch(timerStartedNotifierProvider);
+    final color = ref.watch(colorsNotifierProvider);
 
     if (rendered.first) {
       WidgetsBinding.instance
@@ -33,6 +35,13 @@ class _ProgressIndicatorWidgetState
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
+          boxShadow: const [
+            BoxShadow(
+                color: Color.fromRGBO(39, 44, 90, 1),
+                blurRadius: 40,
+                spreadRadius: 0,
+                offset: Offset(-25, -15))
+          ],
           gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

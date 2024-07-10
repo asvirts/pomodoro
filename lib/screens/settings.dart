@@ -1,3 +1,5 @@
+import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +17,36 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
   @override
   Widget build(BuildContext context) {
     final color = ref.watch(colorsNotifierProvider.notifier);
+    final font = ref.watch(fontNotifierProvider);
+    final pomo = ref.watch(pomodoroTimerNotifierProvider.notifier);
+    final short = ref.watch(shortBreakTimerNotifierProvider.notifier);
+    final long = ref.watch(longBreakTimerNotifierProvider.notifier);
+
+    DropdownController controller = DropdownController();
+
+    List<CoolDropdownItem> pomoList = [];
+
+    for (var i = 20; i < 31; i++) {
+      pomoList.add(
+        CoolDropdownItem(label: i.toString(), value: i),
+      );
+    }
+
+    List<CoolDropdownItem> shortList = [];
+
+    for (var i = 1; i < 11; i++) {
+      shortList.add(
+        CoolDropdownItem(label: i.toString(), value: i),
+      );
+    }
+
+    List<CoolDropdownItem> longList = [];
+
+    for (var i = 10; i < 21; i++) {
+      longList.add(
+        CoolDropdownItem(label: i.toString(), value: i),
+      );
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +54,7 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
         TextButton(
           onPressed: () => showDialog<String>(
             context: context,
-            builder: (BuildContext context) => Dialog(
+            builder: (context) => Dialog(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -35,17 +67,22 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                             children: [
                               const Text(
                                 "Settings",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0),
                               ),
-                              TextButton(
+                              IconButton(
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(30, 33, 63, .5),
+                                  semanticLabel: 'Close app settings',
+                                ),
+                                visualDensity: VisualDensity.compact,
+                                iconSize: 14,
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const Icon(
-                                  Icons.close,
-                                  color: Color.fromRGBO(30, 33, 63, .5),
-                                  size: 14.0,
-                                  semanticLabel: 'Close app settings',
-                                ),
                               ),
                             ]),
                       ),
@@ -74,44 +111,18 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                           children: [
                             const Text("pomodoro"),
                             Container(
-                              decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(239, 241, 250, 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              height: 50,
                               width: 140,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(ref
-                                      .watch(pomodoroTimerNotifierProvider
-                                          .notifier)
-                                      .getValue()
-                                      .toString()),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
-                                          visualDensity: VisualDensity.compact,
-                                          onPressed: () => ref
-                                              .watch(
-                                                  pomodoroTimerNotifierProvider
-                                                      .notifier)
-                                              .incrementTimer(),
-                                          icon: const Icon(
-                                            Icons.unfold_more,
-                                            color:
-                                                Color.fromRGBO(30, 33, 63, .25),
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                              height: 40,
+                              child: CoolDropdown(
+                                  dropdownOptions: const DropdownOptions(
+                                      color: Color.fromRGBO(239, 241, 250, 1),
+                                      duration: Duration(milliseconds: 100)),
+                                  dropdownList: pomoList,
+                                  controller: controller,
+                                  defaultItem: pomoList[5],
+                                  onChange: (value) =>
+                                      pomo.updateTimerDuration(value)),
+                            )
                           ],
                         ),
                       ),
@@ -122,43 +133,18 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                           children: [
                             const Text("short break"),
                             Container(
-                              decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(239, 241, 250, 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              height: 50,
                               width: 140,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(ref
-                                      .watch(shortBreakTimerNotifierProvider
-                                          .notifier)
-                                      .getValue()
-                                      .toString()),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () => ref
-                                              .watch(
-                                                  shortBreakTimerNotifierProvider
-                                                      .notifier)
-                                              .incrementTimer(),
-                                          icon: const Icon(
-                                            Icons.unfold_more,
-                                            color:
-                                                Color.fromRGBO(30, 33, 63, .25),
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                              height: 40,
+                              child: CoolDropdown(
+                                  dropdownOptions: const DropdownOptions(
+                                      color: Color.fromRGBO(239, 241, 250, 1),
+                                      duration: Duration(milliseconds: 100)),
+                                  dropdownList: shortList,
+                                  controller: controller,
+                                  defaultItem: shortList[4],
+                                  onChange: (value) =>
+                                      short.updateTimerDuration(value)),
+                            )
                           ],
                         ),
                       ),
@@ -169,43 +155,18 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                           children: [
                             const Text("long break"),
                             Container(
-                              decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(239, 241, 250, 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              height: 50,
                               width: 140,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(ref
-                                      .watch(longBreakTimerNotifierProvider
-                                          .notifier)
-                                      .getValue()
-                                      .toString()),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () => ref
-                                              .watch(
-                                                  longBreakTimerNotifierProvider
-                                                      .notifier)
-                                              .incrementTimer(),
-                                          icon: const Icon(
-                                            Icons.unfold_more,
-                                            color:
-                                                Color.fromRGBO(30, 33, 63, .25),
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                              height: 40,
+                              child: CoolDropdown(
+                                  dropdownOptions: const DropdownOptions(
+                                      color: Color.fromRGBO(239, 241, 250, 1),
+                                      duration: Duration(milliseconds: 100)),
+                                  dropdownList: longList,
+                                  controller: controller,
+                                  defaultItem: longList[5],
+                                  onChange: (value) =>
+                                      long.updateTimerDuration(value)),
+                            )
                           ],
                         ),
                       ),
