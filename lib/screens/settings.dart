@@ -16,13 +16,15 @@ class SettingsDialog extends ConsumerStatefulWidget {
 class _SettingsDialogState extends ConsumerState<SettingsDialog> {
   @override
   Widget build(BuildContext context) {
-    final color = ref.watch(colorsNotifierProvider.notifier);
+    final getColor = ref.watch(colorsNotifierProvider.notifier);
     final font = ref.watch(fontNotifierProvider);
     final pomo = ref.watch(pomodoroTimerNotifierProvider.notifier);
     final short = ref.watch(shortBreakTimerNotifierProvider.notifier);
     final long = ref.watch(longBreakTimerNotifierProvider.notifier);
 
-    DropdownController controller = DropdownController();
+    DropdownController pomoController = DropdownController();
+    DropdownController shortController = DropdownController();
+    DropdownController longController = DropdownController();
 
     List<CoolDropdownItem> pomoList = [];
 
@@ -114,11 +116,31 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
+                                  dropdownItemOptions: DropdownItemOptions(
+                                      selectedTextStyle: TextStyle(
+                                        color: Color.fromRGBO(30, 33, 63, 1),
+                                      ),
+                                      selectedBoxDecoration: BoxDecoration(
+                                        color:
+                                            Color.fromRGBO(239, 241, 250, .5),
+                                      )),
+                                  resultOptions: ResultOptions(
+                                      openBoxDecoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          border: Border.all(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, 1),
+                                          )),
+                                      icon: Icon(
+                                        Icons.unfold_more,
+                                        color: Color.fromRGBO(30, 33, 63, .25),
+                                      )),
                                   dropdownOptions: const DropdownOptions(
                                       color: Color.fromRGBO(239, 241, 250, 1),
                                       duration: Duration(milliseconds: 100)),
                                   dropdownList: pomoList,
-                                  controller: controller,
+                                  controller: pomoController,
                                   defaultItem: pomoList[5],
                                   onChange: (value) =>
                                       pomo.updateTimerDuration(value)),
@@ -136,11 +158,31 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
+                                  dropdownItemOptions: DropdownItemOptions(
+                                      selectedTextStyle: TextStyle(
+                                        color: Color.fromRGBO(30, 33, 63, 1),
+                                      ),
+                                      selectedBoxDecoration: BoxDecoration(
+                                        color:
+                                            Color.fromRGBO(239, 241, 250, .5),
+                                      )),
+                                  resultOptions: ResultOptions(
+                                      openBoxDecoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          border: Border.all(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, 1),
+                                          )),
+                                      icon: Icon(
+                                        Icons.unfold_more,
+                                        color: Color.fromRGBO(30, 33, 63, .25),
+                                      )),
                                   dropdownOptions: const DropdownOptions(
                                       color: Color.fromRGBO(239, 241, 250, 1),
                                       duration: Duration(milliseconds: 100)),
                                   dropdownList: shortList,
-                                  controller: controller,
+                                  controller: shortController,
                                   defaultItem: shortList[4],
                                   onChange: (value) =>
                                       short.updateTimerDuration(value)),
@@ -158,11 +200,31 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
+                                  dropdownItemOptions: DropdownItemOptions(
+                                      selectedTextStyle: TextStyle(
+                                        color: Color.fromRGBO(30, 33, 63, 1),
+                                      ),
+                                      selectedBoxDecoration: BoxDecoration(
+                                        color:
+                                            Color.fromRGBO(239, 241, 250, .5),
+                                      )),
+                                  resultOptions: ResultOptions(
+                                      openBoxDecoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          border: Border.all(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, 1),
+                                          )),
+                                      icon: Icon(
+                                        Icons.unfold_more,
+                                        color: Color.fromRGBO(30, 33, 63, .25),
+                                      )),
                                   dropdownOptions: const DropdownOptions(
                                       color: Color.fromRGBO(239, 241, 250, 1),
                                       duration: Duration(milliseconds: 100)),
                                   dropdownList: longList,
-                                  controller: controller,
+                                  controller: longController,
                                   defaultItem: longList[5],
                                   onChange: (value) =>
                                       long.updateTimerDuration(value)),
@@ -242,7 +304,7 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                   style: ButtonStyle(
                                     elevation: const WidgetStatePropertyAll(99),
                                     backgroundColor: WidgetStateProperty.all(
-                                        color.getCurrentColor()),
+                                        getColor.getCurrentColor()),
                                   ),
                                   child: const Text("Apply"),
                                 )
