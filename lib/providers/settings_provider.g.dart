@@ -53,6 +53,69 @@ final colorsNotifierProvider =
 );
 
 typedef _$ColorsNotifier = AutoDisposeNotifier<Set<PomodoroColors>>;
+String _$fontSansSelectedHash() => r'fbce238dd08c79b601ac9e46a3c9aa62e801baf5';
+
+/// See also [FontSansSelected].
+@ProviderFor(FontSansSelected)
+final fontSansSelectedProvider =
+    AutoDisposeNotifierProvider<FontSansSelected, Set<bool>>.internal(
+  FontSansSelected.new,
+  name: r'fontSansSelectedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$fontSansSelectedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$FontSansSelected = AutoDisposeNotifier<Set<bool>>;
+String _$fontSerifSelectedHash() => r'850dbb558f7de486a54771a4745280cec06cbc00';
+
+/// See also [FontSerifSelected].
+@ProviderFor(FontSerifSelected)
+final fontSerifSelectedProvider =
+    AutoDisposeNotifierProvider<FontSerifSelected, Set<bool>>.internal(
+  FontSerifSelected.new,
+  name: r'fontSerifSelectedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$fontSerifSelectedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$FontSerifSelected = AutoDisposeNotifier<Set<bool>>;
+String _$fontMonoSelectedHash() => r'585b61ceac34b1d75ea56cef4b3176e6f68d4acb';
+
+/// See also [FontMonoSelected].
+@ProviderFor(FontMonoSelected)
+final fontMonoSelectedProvider =
+    AutoDisposeNotifierProvider<FontMonoSelected, Set<bool>>.internal(
+  FontMonoSelected.new,
+  name: r'fontMonoSelectedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$fontMonoSelectedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$FontMonoSelected = AutoDisposeNotifier<Set<bool>>;
+String _$selectedFontHash() => r'd612d95b48ab139f8662deabe3e38084212d218b';
+
+/// See also [SelectedFont].
+@ProviderFor(SelectedFont)
+final selectedFontProvider =
+    AutoDisposeNotifierProvider<SelectedFont, Set<int>>.internal(
+  SelectedFont.new,
+  name: r'selectedFontProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$selectedFontHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SelectedFont = AutoDisposeNotifier<Set<int>>;
 String _$selectedColorHash() => r'9151b791467f877c853d124dae1acf6b66845e01';
 
 /// See also [SelectedColor].

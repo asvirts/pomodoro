@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:group_button/group_button.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
+import 'package:test/test.dart';
 
 class FontSelector extends ConsumerStatefulWidget {
   const FontSelector({super.key});
@@ -13,38 +15,115 @@ class FontSelector extends ConsumerStatefulWidget {
 class _FontSelectorState extends ConsumerState<FontSelector> {
   @override
   Widget build(BuildContext context) {
-    final currentFontIndex = ref.watch(selectedFontIndexProvider);
+    final red = ref.watch(colorRedSelectedProvider);
+    final blue = ref.watch(colorBlueSelectedProvider);
+    final purple = ref.watch(colorPurpleSelectedProvider);
 
-    GroupButtonController controller = GroupButtonController();
+    final sans = ref.watch(fontSansSelectedProvider);
+    final serif = ref.watch(fontSerifSelectedProvider);
+    final mono = ref.watch(fontMonoSelectedProvider);
 
-    controller.selectIndex(currentFontIndex.first);
-
-    return Row(children: [
-      GroupButton(
-          controller: controller,
-          options: const GroupButtonOptions(
-              buttonHeight: 40,
-              buttonWidth: 40,
-              spacing: 16,
-              selectedColor: Color.fromRGBO(22, 25, 50, 1),
-              selectedTextStyle: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1),
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      SizedBox(
+        height: 40,
+        width: 40,
+        child: IconButton(
+            style: ButtonStyle(
+              backgroundColor: sans.first
+                  ? WidgetStateProperty.all(const Color.fromRGBO(22, 25, 50, 1))
+                  : WidgetStateProperty.all(
+                      const Color.fromRGBO(239, 241, 250, 1)),
+            ),
+            isSelected: sans.first ? true : false,
+            onPressed: () {
+              ref.watch(fontNotifierProvider.notifier).updateFonts(0);
+              ref.watch(selectedFontProvider.notifier).selectFont(0);
+              ref.watch(selectedFontProvider.notifier).updateSelectedFont(0);
+            },
+            icon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: const Color.fromRGBO(22, 25, 50, 1),
+                  fontFamily: GoogleFonts.kumbhSans().fontFamily,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-              unselectedColor: Color.fromRGBO(239, 241, 250, 1),
-              unselectedTextStyle: TextStyle(
-                  color: Color.fromRGBO(30, 33, 63, 1),
+            ),
+            selectedIcon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: const Color.fromRGBO(239, 241, 250, 1),
+                  fontFamily: GoogleFonts.kumbhSans().fontFamily,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-              borderRadius: BorderRadius.all(Radius.circular(999))),
-          isRadio: true,
-          buttons: const ["Aa", "Aa", "Aa"],
-          onSelected: (value, index, isSelected) => {
-                ref.watch(fontNotifierProvider.notifier).updateFonts(index),
-                ref
-                    .watch(selectedFontIndexProvider.notifier)
-                    .updateSelectedFontIndex(index)
-              })
+            )),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        height: 40,
+        width: 40,
+        child: IconButton(
+            isSelected: serif.first ? true : false,
+            style: ButtonStyle(
+              backgroundColor: serif.first
+                  ? WidgetStateProperty.all(const Color.fromRGBO(22, 25, 50, 1))
+                  : WidgetStateProperty.all(
+                      const Color.fromRGBO(239, 241, 250, 1)),
+            ),
+            onPressed: () {
+              ref.watch(fontNotifierProvider.notifier).updateFonts(1);
+              ref.watch(selectedFontProvider.notifier).selectFont(1);
+              ref.watch(selectedFontProvider.notifier).updateSelectedFont(1);
+            },
+            icon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: Color.fromRGBO(22, 25, 50, 1),
+                  fontFamily: GoogleFonts.robotoSlab().fontFamily,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            selectedIcon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: Color.fromRGBO(239, 241, 250, 1),
+                  fontFamily: GoogleFonts.robotoSlab().fontFamily,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            )),
+      ),
+      SizedBox(
+        height: 40,
+        width: 40,
+        child: IconButton(
+            isSelected: mono.first ? true : false,
+            style: ButtonStyle(
+              backgroundColor: mono.first
+                  ? WidgetStateProperty.all(const Color.fromRGBO(22, 25, 50, 1))
+                  : WidgetStateProperty.all(
+                      const Color.fromRGBO(239, 241, 250, 1)),
+            ),
+            onPressed: () {
+              ref.watch(fontNotifierProvider.notifier).updateFonts(2);
+              ref.watch(selectedFontProvider.notifier).selectFont(2);
+              ref.watch(selectedFontProvider.notifier).updateSelectedFont(2);
+            },
+            icon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: const Color.fromRGBO(22, 25, 50, 1),
+                  fontFamily: GoogleFonts.spaceMono().fontFamily,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            selectedIcon: Text(
+              "Aa",
+              style: TextStyle(
+                  color: const Color.fromRGBO(239, 241, 250, 1),
+                  fontFamily: GoogleFonts.spaceMono().fontFamily,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            )),
+      ),
     ]);
   }
 }

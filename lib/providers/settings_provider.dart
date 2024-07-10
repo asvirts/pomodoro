@@ -133,6 +133,86 @@ class ColorsNotifier extends _$ColorsNotifier {
 }
 
 @riverpod
+class FontSansSelected extends _$FontSansSelected {
+  @override
+  Set<bool> build() {
+    return {true};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
+@riverpod
+class FontSerifSelected extends _$FontSerifSelected {
+  @override
+  Set<bool> build() {
+    return {false};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
+@riverpod
+class FontMonoSelected extends _$FontMonoSelected {
+  @override
+  Set<bool> build() {
+    return {false};
+  }
+
+  void select() {
+    state = {true};
+  }
+
+  void deselect() {
+    state = {false};
+  }
+}
+
+@riverpod
+class SelectedFont extends _$SelectedFont {
+  @override
+  Set<int> build() {
+    return {0};
+  }
+
+  void selectFont(int index) {
+    switch (index) {
+      case 0:
+        ref.watch(fontSansSelectedProvider.notifier).select();
+        ref.watch(fontSerifSelectedProvider.notifier).deselect();
+        ref.watch(fontMonoSelectedProvider.notifier).deselect();
+        break;
+      case 1:
+        ref.watch(fontSansSelectedProvider.notifier).deselect();
+        ref.watch(fontSerifSelectedProvider.notifier).select();
+        ref.watch(fontMonoSelectedProvider.notifier).deselect();
+        break;
+      case 2:
+        ref.watch(fontSansSelectedProvider.notifier).deselect();
+        ref.watch(fontSerifSelectedProvider.notifier).deselect();
+        ref.watch(fontMonoSelectedProvider.notifier).select();
+        break;
+    }
+  }
+
+  void updateSelectedFont(int i) {
+    state = {i};
+  }
+}
+
+@riverpod
 class SelectedColor extends _$SelectedColor {
   @override
   Set<int> build() {
