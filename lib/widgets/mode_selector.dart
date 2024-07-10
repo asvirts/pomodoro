@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:group_button/group_button.dart';
 import 'package:pomodoro/providers/modes_provider.dart';
-import 'package:pomodoro/providers/progress_provider.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 
 class ModeSelector extends ConsumerStatefulWidget {
@@ -17,39 +15,38 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
   Widget build(BuildContext context) {
     final mode = ref.watch(modeNotifierProvider.notifier);
     final currentMode = ref.watch(modeNotifierProvider);
-    final selectedMode = ref.watch(selectedColorProvider.notifier);
+    final color = ref.watch(colorsNotifierProvider.notifier);
 
     TextStyle font = ref.watch(fontNotifierProvider.notifier).getCurrentFont();
     WidgetStatesController controller = WidgetStatesController();
 
-    return Expanded(
-      child: Container(
-        width: 320,
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Theme.of(context).primaryColorDark,
-            borderRadius: BorderRadius.all(Radius.circular(99))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FilledButton(
-                statesController: controller,
-                autofocus: true,
-                style: FilledButton.styleFrom(
-                  backgroundColor: currentMode.first == Modes.pomodoro
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColorDark,
-                  foregroundColor: currentMode.first == Modes.pomodoro
-                      ? Theme.of(context).primaryColorDark
-                      : Theme.of(context).canvasColor.withAlpha(70),
-                ),
-                onPressed: () {
-                  mode.updateMode(Modes.pomodoro);
-                  setState(() {
-                    controller.update(WidgetState.selected, true);
-                  });
-                },
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Theme.of(context).primaryColorDark,
+          borderRadius: const BorderRadius.all(Radius.circular(99))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FilledButton(
+              statesController: controller,
+              autofocus: true,
+              style: FilledButton.styleFrom(
+                backgroundColor: currentMode.first == Modes.pomodoro
+                    ? color.getCurrentColor()
+                    : Theme.of(context).primaryColorDark,
+                foregroundColor: currentMode.first == Modes.pomodoro
+                    ? Theme.of(context).primaryColorDark
+                    : Theme.of(context).canvasColor.withAlpha(70),
+              ),
+              onPressed: () {
+                mode.updateMode(Modes.pomodoro);
+                setState(() {
+                  controller.update(WidgetState.selected, true);
+                });
+              },
+              child: Container(
+                width: 59,
                 child: Text(
                   "pomodoro",
                   style: TextStyle(
@@ -57,23 +54,26 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0),
-                )),
-            FilledButton(
-              statesController: controller,
-              style: FilledButton.styleFrom(
-                backgroundColor: currentMode.first == Modes.shortBreak
-                    ? Theme.of(context).primaryColor
-                    : Theme.of(context).primaryColorDark,
-                foregroundColor: currentMode.first == Modes.shortBreak
-                    ? Theme.of(context).primaryColorDark
-                    : Theme.of(context).canvasColor.withAlpha(70),
-              ),
-              onPressed: () {
-                mode.updateMode(Modes.shortBreak);
-                setState(() {
-                  controller.update(WidgetState.selected, true);
-                });
-              },
+                ),
+              )),
+          FilledButton(
+            statesController: controller,
+            style: FilledButton.styleFrom(
+              backgroundColor: currentMode.first == Modes.shortBreak
+                  ? color.getCurrentColor()
+                  : Theme.of(context).primaryColorDark,
+              foregroundColor: currentMode.first == Modes.shortBreak
+                  ? Theme.of(context).primaryColorDark
+                  : Theme.of(context).canvasColor.withAlpha(70),
+            ),
+            onPressed: () {
+              mode.updateMode(Modes.shortBreak);
+              setState(() {
+                controller.update(WidgetState.selected, true);
+              });
+            },
+            child: Container(
+              width: 65,
               child: Text(
                 "short break",
                 style: TextStyle(
@@ -83,22 +83,25 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
                     letterSpacing: 0),
               ),
             ),
-            FilledButton(
-                statesController: controller,
-                style: FilledButton.styleFrom(
-                  backgroundColor: currentMode.first == Modes.longBreak
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColorDark,
-                  foregroundColor: currentMode.first == Modes.longBreak
-                      ? Theme.of(context).primaryColorDark
-                      : Theme.of(context).canvasColor.withAlpha(70),
-                ),
-                onPressed: () {
-                  mode.updateMode(Modes.longBreak);
-                  setState(() {
-                    controller.update(WidgetState.selected, true);
-                  });
-                },
+          ),
+          FilledButton(
+              statesController: controller,
+              style: FilledButton.styleFrom(
+                backgroundColor: currentMode.first == Modes.longBreak
+                    ? color.getCurrentColor()
+                    : Theme.of(context).primaryColorDark,
+                foregroundColor: currentMode.first == Modes.longBreak
+                    ? Theme.of(context).primaryColorDark
+                    : Theme.of(context).canvasColor.withAlpha(70),
+              ),
+              onPressed: () {
+                mode.updateMode(Modes.longBreak);
+                setState(() {
+                  controller.update(WidgetState.selected, true);
+                });
+              },
+              child: Container(
+                width: 61,
                 child: Text(
                   "long break",
                   style: TextStyle(
@@ -106,9 +109,9 @@ class _ModeSelector extends ConsumerState<ModeSelector> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0),
-                )),
-          ],
-        ),
+                ),
+              )),
+        ],
       ),
     );
   }

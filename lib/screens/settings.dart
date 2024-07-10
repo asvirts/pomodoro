@@ -14,6 +14,8 @@ class SettingsDialog extends ConsumerStatefulWidget {
 class _SettingsDialogState extends ConsumerState<SettingsDialog> {
   @override
   Widget build(BuildContext context) {
+    final color = ref.watch(colorsNotifierProvider.notifier);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -269,12 +271,17 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 FilledButton(
-                                  onPressed: () => Navigator.pop(context),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('Settings applied'),
+                                    ));
+                                  },
                                   style: ButtonStyle(
                                     elevation: const WidgetStatePropertyAll(99),
-                                    backgroundColor: WidgetStateProperty.all(ref
-                                        .watch(colorsNotifierProvider.notifier)
-                                        .getCurrentColor()),
+                                    backgroundColor: WidgetStateProperty.all(
+                                        color.getCurrentColor()),
                                   ),
                                   child: const Text("Apply"),
                                 )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro/providers/settings_provider.dart';
 import 'package:pomodoro/screens/home.dart';
 
@@ -21,6 +20,7 @@ class MyApp extends ConsumerWidget {
     final color = ref.watch(colorsNotifierProvider.notifier);
 
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: color.getCurrentColor(),
           canvasColor: const Color.fromRGBO(215, 224, 255, 1),
