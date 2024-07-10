@@ -119,7 +119,7 @@ final colorPurpleSelectedProvider =
 
 typedef _$ColorPurpleSelected = AutoDisposeNotifier<Set<bool>>;
 String _$pomodoroTimerNotifierHash() =>
-    r'679ac3ec4c94f5a450fd36a19a8dfafe6c16fcea';
+    r'a036eee72177e38c409911f6dee55552972db4eb';
 
 /// See also [PomodoroTimerNotifier].
 @ProviderFor(PomodoroTimerNotifier)
