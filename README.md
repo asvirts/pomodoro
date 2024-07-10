@@ -1,4 +1,4 @@
-[![Flutter](https://github.com/asvirts/pomodoro/actions/workflows/flutter.yml/badge.svg?branch=main)](https://github.com/asvirts/pomodoro/actions/workflows/flutter.yml)
+#Pomodoro
 
 ### The challenge
 
