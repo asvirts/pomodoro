@@ -18,6 +18,7 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
   Widget build(BuildContext context) {
     final getColor = ref.watch(colorsNotifierProvider.notifier);
     final font = ref.watch(fontNotifierProvider);
+    final getFont = ref.watch(fontNotifierProvider.notifier);
     final pomo = ref.watch(pomodoroTimerNotifierProvider.notifier);
     final short = ref.watch(shortBreakTimerNotifierProvider.notifier);
     final long = ref.watch(longBreakTimerNotifierProvider.notifier);
@@ -96,14 +97,14 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "TIME (MINUTES)",
-                                style: GoogleFonts.kumbhSans(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 4.23,
-                                ),
-                              ),
+                              Text("TIME (MINUTES)",
+                                  style: TextStyle(
+                                    fontFamily:
+                                        getFont.getCurrentFont().fontFamily,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 4.23,
+                                  )),
                             ]),
                       ),
                       Container(
@@ -244,14 +245,14 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 18),
-                                  child: Text(
-                                    "FONT",
-                                    style: GoogleFonts.kumbhSans(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 4.23,
-                                    ),
-                                  ),
+                                  child: Text("FONT",
+                                      style: TextStyle(
+                                        fontFamily:
+                                            getFont.getCurrentFont().fontFamily,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 4.23,
+                                      )),
                                 ),
                                 const FontSelector(),
                               ],
@@ -272,14 +273,14 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 18),
-                                  child: Text(
-                                    "COLOR",
-                                    style: GoogleFonts.kumbhSans(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 4.23,
-                                    ),
-                                  ),
+                                  child: Text("COLOR",
+                                      style: TextStyle(
+                                        fontFamily:
+                                            getFont.getCurrentFont().fontFamily,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 4.23,
+                                      )),
                                 ),
                                 const ColorSelector(),
                               ],
