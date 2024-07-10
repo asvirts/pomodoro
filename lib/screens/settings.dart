@@ -76,7 +76,7 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                                     letterSpacing: 0),
                               ),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.close,
                                   color: Color.fromRGBO(30, 33, 63, .5),
                                   semanticLabel: 'Close app settings',
@@ -117,23 +117,25 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
-                                  dropdownItemOptions: DropdownItemOptions(
-                                      selectedTextStyle: TextStyle(
-                                        color: Color.fromRGBO(30, 33, 63, 1),
-                                      ),
-                                      selectedBoxDecoration: BoxDecoration(
-                                        color:
-                                            Color.fromRGBO(239, 241, 250, .5),
-                                      )),
+                                  dropdownItemOptions:
+                                      const DropdownItemOptions(
+                                          selectedTextStyle: TextStyle(
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, 1),
+                                          ),
+                                          selectedBoxDecoration: BoxDecoration(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, .5),
+                                          )),
                                   resultOptions: ResultOptions(
                                       openBoxDecoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(10)),
                                           border: Border.all(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 239, 241, 250, 1),
                                           )),
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.unfold_more,
                                         color: Color.fromRGBO(30, 33, 63, .25),
                                       )),
@@ -159,23 +161,25 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
-                                  dropdownItemOptions: DropdownItemOptions(
-                                      selectedTextStyle: TextStyle(
-                                        color: Color.fromRGBO(30, 33, 63, 1),
-                                      ),
-                                      selectedBoxDecoration: BoxDecoration(
-                                        color:
-                                            Color.fromRGBO(239, 241, 250, .5),
-                                      )),
+                                  dropdownItemOptions:
+                                      const DropdownItemOptions(
+                                          selectedTextStyle: TextStyle(
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, 1),
+                                          ),
+                                          selectedBoxDecoration: BoxDecoration(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, .5),
+                                          )),
                                   resultOptions: ResultOptions(
                                       openBoxDecoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(10)),
                                           border: Border.all(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 239, 241, 250, 1),
                                           )),
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.unfold_more,
                                         color: Color.fromRGBO(30, 33, 63, .25),
                                       )),
@@ -201,23 +205,25 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                               width: 140,
                               height: 40,
                               child: CoolDropdown(
-                                  dropdownItemOptions: DropdownItemOptions(
-                                      selectedTextStyle: TextStyle(
-                                        color: Color.fromRGBO(30, 33, 63, 1),
-                                      ),
-                                      selectedBoxDecoration: BoxDecoration(
-                                        color:
-                                            Color.fromRGBO(239, 241, 250, .5),
-                                      )),
+                                  dropdownItemOptions:
+                                      const DropdownItemOptions(
+                                          selectedTextStyle: TextStyle(
+                                            color:
+                                                Color.fromRGBO(30, 33, 63, 1),
+                                          ),
+                                          selectedBoxDecoration: BoxDecoration(
+                                            color: Color.fromRGBO(
+                                                239, 241, 250, .5),
+                                          )),
                                   resultOptions: ResultOptions(
                                       openBoxDecoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(10)),
                                           border: Border.all(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 239, 241, 250, 1),
                                           )),
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.unfold_more,
                                         color: Color.fromRGBO(30, 33, 63, .25),
                                       )),
